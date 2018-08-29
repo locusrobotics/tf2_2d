@@ -27,8 +27,8 @@ inline Transform::Transform(const Rotation& rotation, const Vector2& translation
 {
 }
 
-inline Transform::Transform(const tf2Scalar x, const tf2Scalar y, const tf2Scalar angle) :
-  rotation_(angle),
+inline Transform::Transform(const tf2Scalar x, const tf2Scalar y, const tf2Scalar yaw) :
+  rotation_(yaw),
   translation_(x, y)
 {
 }
@@ -83,7 +83,7 @@ inline const tf2Scalar& Transform::getY() const
   return translation_.getY();
 }
 
-inline const tf2Scalar& Transform::getAngle() const
+inline const tf2Scalar& Transform::getYaw() const
 {
   return rotation_.getAngle();
 }
@@ -108,9 +108,9 @@ inline void Transform::setY(const tf2Scalar y)
   translation_.setY(y);
 }
 
-inline void Transform::setAngle(const tf2Scalar angle)
+inline void Transform::setYaw(const tf2Scalar yaw)
 {
-  rotation_.setAngle(angle);
+  rotation_.setAngle(yaw);
 }
 
 inline void Transform::setIdentity()
