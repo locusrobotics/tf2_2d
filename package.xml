@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>tf2_2d</name>
+  <version>0.2.0</version>
+  <description>
+    A set of 2D geometry classes modeled after the 3D geometry classes in tf2.
+  </description>
+
+  <maintainer email="swilliams@locusrobotics.com">Stephen Williams</maintainer>
+  <author email="swilliams@locusrobotics.com">Stephen Williams</author>
+
+  <license>Proprietary</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>roscpp</depend>
+  <depend>tf2</depend>
+
+  <test_depend>roslint</test_depend>
+  <test_depend>rostest</test_depend>
+</package>
