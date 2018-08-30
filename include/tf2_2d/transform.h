@@ -37,13 +37,13 @@ public:
   Transform(const Rotation& rotation, const Vector2& translation);
 
   /**
-   * @brief Constructor from individual x, y, angle elements
+   * @brief Constructor from individual x, y, yaw elements
    *
    * @param x The X value
    * @param y The Y value
-   * @param angle The angle value in radians
+   * @param yaw The yaw value in radians
    */
-  Transform(const tf2Scalar x, const tf2Scalar y, const tf2Scalar angle);
+  Transform(const tf2Scalar x, const tf2Scalar y, const tf2Scalar yaw);
 
   /**
    * @brief Constructor from a tf2 Transform object
@@ -110,10 +110,17 @@ public:
   const tf2Scalar& y() const { return getY(); }
 
   /**
-   * @brief Return the angle value
+   * @brief Return the yaw value
    */
-  const tf2Scalar& getAngle() const;
-  const tf2Scalar& angle() const { return getAngle(); }
+  const tf2Scalar& getYaw() const;
+  const tf2Scalar& yaw() const { return getYaw(); }
+  // There are a lot of common aliases for yaw
+  const tf2Scalar& getAngle() const { return getYaw(); }
+  const tf2Scalar& angle() const { return getYaw(); }
+  const tf2Scalar& getHeading() const { return getYaw(); }
+  const tf2Scalar& heading() const { return getYaw(); }
+  const tf2Scalar& getTheta() const { return getYaw(); }
+  const tf2Scalar& theta() const { return getYaw(); }
 
   /**
    * @brief Set the X value
@@ -126,9 +133,13 @@ public:
   void setY(const tf2Scalar y);
 
   /**
-   * @brief Set the angle value
+   * @brief Set the yaw value
    */
-  void setAngle(const tf2Scalar angle);
+  void setYaw(const tf2Scalar yaw);
+  // There are a lot of common aliases for yaw
+  void setAngle(const tf2Scalar angle) { setYaw(angle); };
+  void setHeading(const tf2Scalar heading) { setYaw(heading); };
+  void setTheta(const tf2Scalar theta) { setYaw(theta); };
 
   /**
    * @brief Set this transformation to the identity
