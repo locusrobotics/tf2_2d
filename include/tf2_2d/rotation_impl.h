@@ -10,6 +10,8 @@
 #include <tf2/LinearMath/MinMax.h>  // NOLINT: the order of the headers here is important.
 #include <tf2_2d/vector2.h>
 
+#include <Eigen/Core>
+
 #include <cmath>
 
 
@@ -172,6 +174,22 @@ inline bool Rotation::fuzzyZero() const
 {
   // Squaring to make it consistent with the Vector2 fuzzyZero check
   return (angle_ * angle_) < TF2SIMD_EPSILON;
+}
+
+inline Eigen::Matrix2d Rotation::getRotationMatrix() const
+{
+  populateTrigCache();
+  Eigen::Matrix2d matrix;
+  matrix << cos_angle_, -sin_angle_, sin_angle_, cos_angle_;
+  return matrix;
+}
+
+inline Eigen::Matrix3d Rotation::getHomogeneousMatrix() const
+{
+  populateTrigCache();
+  Eigen::Matrix3d matrix;
+  matrix << cos_angle_, -sin_angle_, 0, sin_angle_, cos_angle_, 0, 0, 0, 1;
+  return matrix;
 }
 
 inline Rotation& Rotation::wrap()

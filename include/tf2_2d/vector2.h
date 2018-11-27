@@ -8,6 +8,8 @@
 
 #include <tf2/LinearMath/Scalar.h>
 
+#include <Eigen/Core>
+
 
 namespace tf2_2d
 {
@@ -250,6 +252,16 @@ public:
    * Check if all the elements of this vector close to zero
    */
   bool fuzzyZero() const;
+
+  /**
+   * @brief Get an Eigen vector representation
+   */
+  Eigen::Vector2d getVector() const;
+
+  /**
+   * @brief Get a 3x3 homogeneous transformation matrix with just the translation portion populated
+   */
+  Eigen::Matrix3d getHomogeneousMatrix() const;
 
 private:
   tf2Scalar x_;  //!< Storage for the X value

@@ -9,6 +9,8 @@
 #include <tf2/LinearMath/Scalar.h>
 #include <tf2_2d/vector2.h>
 
+#include <Eigen/Core>
+
 
 namespace tf2_2d
 {
@@ -167,6 +169,16 @@ public:
    * Check if all the elements of this vector close to zero
    */
   bool fuzzyZero() const;
+
+  /**
+   * @brief Get a 2x2 rotation matrix
+   */
+  Eigen::Matrix2d getRotationMatrix() const;
+
+  /**
+   * @brief Get a 3x3 homogeneous transformation matrix with just the rotation portion populated
+   */
+  Eigen::Matrix3d getHomogeneousMatrix() const;
 
 private:
   tf2Scalar angle_;  //!< Storage for the angle in radians

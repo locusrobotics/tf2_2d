@@ -6,6 +6,7 @@
 #include <tf2_2d/rotation.h>
 #include <tf2_2d/vector2.h>
 
+#include <Eigen/Core>
 #include <gtest/gtest.h>
 
 
@@ -341,6 +342,35 @@ TEST(Rotation, FuzzyZero)
   EXPECT_TRUE(b.fuzzyZero());
   EXPECT_TRUE(c.fuzzyZero());
   EXPECT_FALSE(d.fuzzyZero());
+}
+
+TEST(Rotation, GetRotationMatrix)
+{
+  tf2_2d::Rotation r(3.0);
+  Eigen::Matrix2d actual = r.getRotationMatrix();
+  Eigen::Matrix2d expected;
+  expected << std::cos(3.0), -std::sin(3.0), std::sin(3.0), std::cos(3.0);
+  EXPECT_DOUBLE_EQ(expected(0, 0), actual(0, 0));
+  EXPECT_DOUBLE_EQ(expected(0, 1), actual(0, 1));
+  EXPECT_DOUBLE_EQ(expected(1, 0), actual(1, 0));
+  EXPECT_DOUBLE_EQ(expected(1, 1), actual(1, 1));
+}
+
+TEST(Rotation, GetHomogeneousMatrix)
+{
+  tf2_2d::Rotation r(3.0);
+  Eigen::Matrix3d actual = r.getHomogeneousMatrix();
+  Eigen::Matrix3d expected;
+  expected << std::cos(3.0), -std::sin(3.0), 0, std::sin(3.0), std::cos(3.0), 0, 0, 0, 1;
+  EXPECT_DOUBLE_EQ(expected(0, 0), actual(0, 0));
+  EXPECT_DOUBLE_EQ(expected(0, 1), actual(0, 1));
+  EXPECT_DOUBLE_EQ(expected(0, 2), actual(0, 2));
+  EXPECT_DOUBLE_EQ(expected(1, 0), actual(1, 0));
+  EXPECT_DOUBLE_EQ(expected(1, 1), actual(1, 1));
+  EXPECT_DOUBLE_EQ(expected(1, 2), actual(1, 2));
+  EXPECT_DOUBLE_EQ(expected(2, 0), actual(2, 0));
+  EXPECT_DOUBLE_EQ(expected(2, 1), actual(2, 1));
+  EXPECT_DOUBLE_EQ(expected(2, 2), actual(2, 2));
 }
 
 int main(int argc, char **argv)

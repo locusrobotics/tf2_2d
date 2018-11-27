@@ -11,6 +11,8 @@
 #include <tf2_2d/rotation.h>
 #include <tf2_2d/vector2.h>
 
+#include <Eigen/Core>
+
 
 namespace tf2_2d
 {
@@ -159,6 +161,11 @@ public:
    * @param other The other transform
    */
   Transform inverseTimes(const Transform& other) const;
+
+  /**
+   * @brief Get a 3x3 homogeneous transformation matrix
+   */
+  Eigen::Matrix3d getHomogeneousMatrix() const;
 
 private:
   Rotation rotation_;  //!< Storage for the rotation
