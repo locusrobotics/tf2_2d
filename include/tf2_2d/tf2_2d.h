@@ -25,6 +25,10 @@
 #include <tf2_2d/transform.h>
 #include <tf2_2d/vector2.h>
 
+#include <boost/array.hpp>
+#include <Eigen/Core>
+
+#include <array>
 #include <cmath>
 
 /**
@@ -246,6 +250,37 @@ inline void fromMsg(const geometry_msgs::PoseStamped& msg, tf2::Stamped<tf2_2d::
   out.stamp_ = msg.header.stamp;
   out.frame_id_ = msg.header.frame_id;
   fromMsg(msg.pose, static_cast<tf2_2d::Transform&>(out));
+}
+
+
+
+inline
+Eigen::Matrix3d transformCovariance(const Eigen::Matrix3d& cov_in, const tf2_2d::Transform& transform)
+{
+  Eigen::Matrix3d R = transform.rotation().getHomogeneousMatrix();
+  return R * cov_in * R.transpose();
+}
+
+inline
+std::array<double, 9> transformCovariance(const std::array<double, 9>& cov_in, const tf2_2d::Transform& transform)
+{
+  Eigen::Matrix3d R = transform.rotation().getHomogeneousMatrix();
+  std::array<double, 9> cov_out;
+  Eigen::Map<Eigen::Matrix<double, 3, 3, Eigen::RowMajor>> cov_out_map(cov_out.data());
+  Eigen::Map<const Eigen::Matrix<double, 3, 3, Eigen::RowMajor>> cov_in_map(cov_in.data());
+  cov_out_map = R * cov_in_map * R.transpose();
+  return cov_out;
+}
+
+inline
+boost::array<double, 9> transformCovariance(const boost::array<double, 9>& cov_in, const tf2_2d::Transform& transform)
+{
+  Eigen::Matrix3d R = transform.rotation().getHomogeneousMatrix();
+  boost::array<double, 9> cov_out;
+  Eigen::Map<Eigen::Matrix<double, 3, 3, Eigen::RowMajor>> cov_out_map(cov_out.data());
+  Eigen::Map<const Eigen::Matrix<double, 3, 3, Eigen::RowMajor>> cov_in_map(cov_in.data());
+  cov_out_map = R * cov_in_map * R.transpose();
+  return cov_out;
 }
 
 }  // namespace tf2

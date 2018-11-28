@@ -21,6 +21,8 @@
 #include <tf2_2d/transform.h>
 #include <tf2_2d/vector2.h>
 
+#include <boost/array.hpp>
+#include <Eigen/Core>
 #include <gtest/gtest.h>
 
 
@@ -510,6 +512,68 @@ TEST(Conversions, Transform)
   }
 }
 
+TEST(Conversions, TransformCovariance)
+{
+  {
+    Eigen::Matrix3d cov_in;
+    cov_in << 1.0, 0.2, 0.3,
+              0.2, 2.0, 0.4,
+              0.3, 0.4, 3.0;
+    tf2_2d::Transform transform(1.0, 1.5, 2.0);
+    Eigen::Matrix3d actual = tf2::transformCovariance(cov_in, transform);
+    Eigen::Matrix3d expected;
+    expected <<  1.978182309493392,   0.247672523481242,  -0.488563021694415,
+                0.247672523481242,   1.021817690506609,   0.106330493428848,
+                -0.488563021694415,   0.106330493428848,   3.000000000000000;
+    EXPECT_NEAR(expected(0, 0), actual(0, 0), 1.0e-9);
+    EXPECT_NEAR(expected(0, 1), actual(0, 1), 1.0e-9);
+    EXPECT_NEAR(expected(0, 2), actual(0, 2), 1.0e-9);
+    EXPECT_NEAR(expected(1, 0), actual(1, 0), 1.0e-9);
+    EXPECT_NEAR(expected(1, 1), actual(1, 1), 1.0e-9);
+    EXPECT_NEAR(expected(1, 2), actual(1, 2), 1.0e-9);
+    EXPECT_NEAR(expected(2, 0), actual(2, 0), 1.0e-9);
+    EXPECT_NEAR(expected(2, 1), actual(2, 1), 1.0e-9);
+    EXPECT_NEAR(expected(2, 2), actual(2, 2), 1.0e-9);
+  }
+  {
+    std::array<double, 9> cov_in{1.0, 0.2, 0.3,
+                                 0.2, 2.0, 0.4,
+                                 0.3, 0.4, 3.0};
+    tf2_2d::Transform transform(1.0, 1.5, 2.0);
+    std::array<double, 9> actual = tf2::transformCovariance(cov_in, transform);
+    std::array<double, 9> expected{1.978182309493392,   0.247672523481242,  -0.488563021694415,
+                                   0.247672523481242,   1.021817690506609,   0.106330493428848,
+                                  -0.488563021694415,   0.106330493428848,   3.000000000000000};
+    EXPECT_NEAR(expected[0], actual[0], 1.0e-9);
+    EXPECT_NEAR(expected[1], actual[1], 1.0e-9);
+    EXPECT_NEAR(expected[2], actual[2], 1.0e-9);
+    EXPECT_NEAR(expected[3], actual[3], 1.0e-9);
+    EXPECT_NEAR(expected[4], actual[4], 1.0e-9);
+    EXPECT_NEAR(expected[5], actual[5], 1.0e-9);
+    EXPECT_NEAR(expected[6], actual[6], 1.0e-9);
+    EXPECT_NEAR(expected[7], actual[7], 1.0e-9);
+    EXPECT_NEAR(expected[8], actual[8], 1.0e-9);
+  }
+  {
+    boost::array<double, 9> cov_in{1.0, 0.2, 0.3,
+                                   0.2, 2.0, 0.4,
+                                   0.3, 0.4, 3.0};
+    tf2_2d::Transform transform(1.0, 1.5, 2.0);
+    boost::array<double, 9> actual = tf2::transformCovariance(cov_in, transform);
+    boost::array<double, 9> expected{1.978182309493392,   0.247672523481242,  -0.488563021694415,
+                                     0.247672523481242,   1.021817690506609,   0.106330493428848,
+                                    -0.488563021694415,   0.106330493428848,   3.000000000000000};
+    EXPECT_NEAR(expected[0], actual[0], 1.0e-9);
+    EXPECT_NEAR(expected[1], actual[1], 1.0e-9);
+    EXPECT_NEAR(expected[2], actual[2], 1.0e-9);
+    EXPECT_NEAR(expected[3], actual[3], 1.0e-9);
+    EXPECT_NEAR(expected[4], actual[4], 1.0e-9);
+    EXPECT_NEAR(expected[5], actual[5], 1.0e-9);
+    EXPECT_NEAR(expected[6], actual[6], 1.0e-9);
+    EXPECT_NEAR(expected[7], actual[7], 1.0e-9);
+    EXPECT_NEAR(expected[8], actual[8], 1.0e-9);
+  }
+}
 int main(int argc, char **argv)
 {
   testing::InitGoogleTest(&argc, argv);
