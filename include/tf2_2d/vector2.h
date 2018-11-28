@@ -306,7 +306,7 @@ Vector2 operator/(Vector2 lhs, const Vector2& rhs);
 /**
  * @brief Stream the vector in human-readable format
  */
-std::ostream& operator<< (std::ostream& stream, const Vector2& vector);
+std::ostream& operator<<(std::ostream& stream, const Vector2& vector);
 
 }  // namespace tf2_2d
 

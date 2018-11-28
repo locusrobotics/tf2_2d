@@ -139,9 +139,9 @@ public:
    */
   void setYaw(const tf2Scalar yaw);
   // There are a lot of common aliases for yaw
-  void setAngle(const tf2Scalar angle) { setYaw(angle); };
-  void setHeading(const tf2Scalar heading) { setYaw(heading); };
-  void setTheta(const tf2Scalar theta) { setYaw(theta); };
+  void setAngle(const tf2Scalar angle) { setYaw(angle); }
+  void setHeading(const tf2Scalar heading) { setYaw(heading); }
+  void setTheta(const tf2Scalar theta) { setYaw(theta); }
 
   /**
    * @brief Set this transformation to the identity
@@ -192,7 +192,7 @@ Rotation operator*(const Transform& lhs, const Rotation& rhs);
 /**
  * @brief Stream the transformation in human-readable format
  */
-std::ostream& operator<< (std::ostream& stream, const Transform& transform);
+std::ostream& operator<<(std::ostream& stream, const Transform& transform);
 
 }  // namespace tf2_2d
 

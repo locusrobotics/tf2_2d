@@ -519,8 +519,8 @@ TEST(Conversions, TransformCovariance)
     cov_in << 1.0, 0.2, 0.3,
               0.2, 2.0, 0.4,
               0.3, 0.4, 3.0;
-    tf2_2d::Transform transform(1.0, 1.5, 2.0);
-    Eigen::Matrix3d actual = tf2::transformCovariance(cov_in, transform);
+    tf2_2d::Transform trans(1.0, 1.5, 2.0);
+    Eigen::Matrix3d actual = tf2::transformCovariance(cov_in, trans);
     Eigen::Matrix3d expected;
     expected <<  1.978182309493392,   0.247672523481242,  -0.488563021694415,
                 0.247672523481242,   1.021817690506609,   0.106330493428848,
@@ -536,14 +536,14 @@ TEST(Conversions, TransformCovariance)
     EXPECT_NEAR(expected(2, 2), actual(2, 2), 1.0e-9);
   }
   {
-    std::array<double, 9> cov_in{1.0, 0.2, 0.3,
+    std::array<double, 9> cov_in{1.0, 0.2, 0.3,  // NOLINT(whitespace/braces)
                                  0.2, 2.0, 0.4,
-                                 0.3, 0.4, 3.0};
-    tf2_2d::Transform transform(1.0, 1.5, 2.0);
-    std::array<double, 9> actual = tf2::transformCovariance(cov_in, transform);
-    std::array<double, 9> expected{1.978182309493392,   0.247672523481242,  -0.488563021694415,
+                                 0.3, 0.4, 3.0};  // NOLINT(whitespace/braces)
+    tf2_2d::Transform trans(1.0, 1.5, 2.0);
+    std::array<double, 9> actual = tf2::transformCovariance(cov_in, trans);
+    std::array<double, 9> expected{1.978182309493392,   0.247672523481242,  -0.488563021694415,  // NOLINT
                                    0.247672523481242,   1.021817690506609,   0.106330493428848,
-                                  -0.488563021694415,   0.106330493428848,   3.000000000000000};
+                                  -0.488563021694415,   0.106330493428848,   3.000000000000000};  // NOLINT
     EXPECT_NEAR(expected[0], actual[0], 1.0e-9);
     EXPECT_NEAR(expected[1], actual[1], 1.0e-9);
     EXPECT_NEAR(expected[2], actual[2], 1.0e-9);
@@ -555,14 +555,14 @@ TEST(Conversions, TransformCovariance)
     EXPECT_NEAR(expected[8], actual[8], 1.0e-9);
   }
   {
-    boost::array<double, 9> cov_in{1.0, 0.2, 0.3,
+    boost::array<double, 9> cov_in{1.0, 0.2, 0.3,  // NOLINT(whitespace/braces)
                                    0.2, 2.0, 0.4,
-                                   0.3, 0.4, 3.0};
-    tf2_2d::Transform transform(1.0, 1.5, 2.0);
-    boost::array<double, 9> actual = tf2::transformCovariance(cov_in, transform);
-    boost::array<double, 9> expected{1.978182309493392,   0.247672523481242,  -0.488563021694415,
+                                   0.3, 0.4, 3.0};  // NOLINT(whitespace/braces)
+    tf2_2d::Transform trans(1.0, 1.5, 2.0);
+    boost::array<double, 9> actual = tf2::transformCovariance(cov_in, trans);
+    boost::array<double, 9> expected{1.978182309493392,   0.247672523481242,  -0.488563021694415,  // NOLINT
                                      0.247672523481242,   1.021817690506609,   0.106330493428848,
-                                    -0.488563021694415,   0.106330493428848,   3.000000000000000};
+                                    -0.488563021694415,   0.106330493428848,   3.000000000000000};  // NOLINT
     EXPECT_NEAR(expected[0], actual[0], 1.0e-9);
     EXPECT_NEAR(expected[1], actual[1], 1.0e-9);
     EXPECT_NEAR(expected[2], actual[2], 1.0e-9);

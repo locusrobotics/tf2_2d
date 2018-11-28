@@ -210,9 +210,9 @@ inline bool Vector2::fuzzyZero() const
 
 inline Eigen::Vector2d Vector2::getVector() const
 {
-  Eigen::Vector2d vector;
-  vector << x_, y_;
-  return vector;
+  Eigen::Vector2d vec;
+  vec << x_, y_;
+  return vec;
 }
 
 inline Eigen::Matrix3d Vector2::getHomogeneousMatrix() const
@@ -264,7 +264,7 @@ inline Vector2 operator/(Vector2 lhs, const Vector2& rhs)
   return lhs;
 }
 
-inline std::ostream& operator<< (std::ostream& stream, const Vector2& vector)
+inline std::ostream& operator<<(std::ostream& stream, const Vector2& vector)
 {
   return stream << "x: " << vector.x() << ", y: " << vector.y();
 }
