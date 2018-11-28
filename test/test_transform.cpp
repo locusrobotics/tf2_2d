@@ -238,6 +238,13 @@ TEST(Transform, GetHomogeneousMatrix)
   EXPECT_DOUBLE_EQ(expected(2, 2), actual(2, 2));
 }
 
+TEST(Transform, Stream)
+{
+  tf2_2d::Transform t(1.0, 2.0, 3.0);
+  std::cout << t << std::endl;
+  SUCCEED();
+}
+
 int main(int argc, char **argv)
 {
   testing::InitGoogleTest(&argc, argv);

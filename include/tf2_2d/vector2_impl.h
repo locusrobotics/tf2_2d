@@ -264,6 +264,11 @@ inline Vector2 operator/(Vector2 lhs, const Vector2& rhs)
   return lhs;
 }
 
+inline std::ostream& operator<< (std::ostream& stream, const Vector2& vector)
+{
+  return stream << "x: " << vector.x() << ", y: " << vector.y();
+}
+
 }  // namespace tf2_2d
 
 #endif  // TF2_2D_VECTOR2_IMPL_H

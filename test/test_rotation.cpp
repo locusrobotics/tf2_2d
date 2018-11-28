@@ -373,6 +373,13 @@ TEST(Rotation, GetHomogeneousMatrix)
   EXPECT_DOUBLE_EQ(expected(2, 2), actual(2, 2));
 }
 
+TEST(Rotation, Stream)
+{
+  tf2_2d::Rotation r(3.0);
+  std::cout << r << std::endl;
+  SUCCEED();
+}
+
 int main(int argc, char **argv)
 {
   testing::InitGoogleTest(&argc, argv);

@@ -237,6 +237,11 @@ Rotation operator/(Rotation lhs, const tf2Scalar rhs);
  */
 Vector2 operator*(const Rotation& lhs, const Vector2& rhs);
 
+/**
+ * @brief Stream the rotation in human-readable format
+ */
+std::ostream& operator<< (std::ostream& stream, const Rotation& rotation);
+
 }  // namespace tf2_2d
 
 #include <tf2_2d/rotation_impl.h>

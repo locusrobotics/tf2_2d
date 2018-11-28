@@ -572,6 +572,13 @@ TEST(Vector2, GetHomogeneousMatrix)
   EXPECT_DOUBLE_EQ(expected(2, 2), actual(2, 2));
 }
 
+TEST(Vector2, Stream)
+{
+  tf2_2d::Vector2 v(3.0, 4.0);
+  std::cout << v << std::endl;
+  SUCCEED();
+}
+
 int main(int argc, char **argv)
 {
   testing::InitGoogleTest(&argc, argv);

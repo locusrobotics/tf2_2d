@@ -155,6 +155,11 @@ inline Rotation operator*(const Transform& lhs, const Rotation& rhs)
   return lhs.rotation() + rhs;
 }
 
+inline std::ostream& operator<< (std::ostream& stream, const Transform& transform)
+{
+  return stream << "x: " << transform.x() << ", y: " << transform.y() << ", yaw: " << transform.yaw();
+}
+
 }  // namespace tf2_2d
 
 #endif  // TF2_2D_TRANSFORM_IMPL_H

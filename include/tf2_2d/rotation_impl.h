@@ -243,6 +243,11 @@ inline Vector2 operator*(const Rotation& lhs, const Vector2& rhs)
   return lhs.rotate(rhs);
 }
 
+inline std::ostream& operator<< (std::ostream& stream, const Rotation& rotation)
+{
+  return stream << "angle: " << rotation.angle();
+}
+
 }  // namespace tf2_2d
 
 #endif  // TF2_2D_ROTATION_IMPL_H

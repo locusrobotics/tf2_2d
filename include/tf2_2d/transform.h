@@ -189,6 +189,11 @@ Vector2 operator*(const Transform& lhs, const Vector2& rhs);
  */
 Rotation operator*(const Transform& lhs, const Rotation& rhs);
 
+/**
+ * @brief Stream the transformation in human-readable format
+ */
+std::ostream& operator<< (std::ostream& stream, const Transform& transform);
+
 }  // namespace tf2_2d
 
 #include <tf2_2d/transform_impl.h>

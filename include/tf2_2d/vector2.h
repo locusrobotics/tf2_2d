@@ -303,6 +303,11 @@ Vector2 operator/(Vector2 lhs, const tf2Scalar rhs);
  */
 Vector2 operator/(Vector2 lhs, const Vector2& rhs);
 
+/**
+ * @brief Stream the vector in human-readable format
+ */
+std::ostream& operator<< (std::ostream& stream, const Vector2& vector);
+
 }  // namespace tf2_2d
 
 #include <tf2_2d/vector2_impl.h>
