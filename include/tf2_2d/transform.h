@@ -11,6 +11,8 @@
 #include <tf2_2d/rotation.h>
 #include <tf2_2d/vector2.h>
 
+#include <Eigen/Core>
+
 
 namespace tf2_2d
 {
@@ -137,9 +139,9 @@ public:
    */
   void setYaw(const tf2Scalar yaw);
   // There are a lot of common aliases for yaw
-  void setAngle(const tf2Scalar angle) { setYaw(angle); };
-  void setHeading(const tf2Scalar heading) { setYaw(heading); };
-  void setTheta(const tf2Scalar theta) { setYaw(theta); };
+  void setAngle(const tf2Scalar angle) { setYaw(angle); }
+  void setHeading(const tf2Scalar heading) { setYaw(heading); }
+  void setTheta(const tf2Scalar theta) { setYaw(theta); }
 
   /**
    * @brief Set this transformation to the identity
@@ -159,6 +161,11 @@ public:
    * @param other The other transform
    */
   Transform inverseTimes(const Transform& other) const;
+
+  /**
+   * @brief Get a 3x3 homogeneous transformation matrix
+   */
+  Eigen::Matrix3d getHomogeneousMatrix() const;
 
 private:
   Rotation rotation_;  //!< Storage for the rotation
@@ -181,6 +188,11 @@ Vector2 operator*(const Transform& lhs, const Vector2& rhs);
  * @brief Return the transformed rotation
  */
 Rotation operator*(const Transform& lhs, const Rotation& rhs);
+
+/**
+ * @brief Stream the transformation in human-readable format
+ */
+std::ostream& operator<<(std::ostream& stream, const Transform& transform);
 
 }  // namespace tf2_2d
 

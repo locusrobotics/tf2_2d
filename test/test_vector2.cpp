@@ -5,6 +5,7 @@
  ***************************************************************************/
 #include <tf2_2d/vector2.h>
 
+#include <Eigen/Core>
 #include <gtest/gtest.h>
 
 
@@ -542,6 +543,40 @@ TEST(Vector2, FuzzyZero)
   EXPECT_TRUE(d.fuzzyZero());
   EXPECT_TRUE(e.fuzzyZero());
   EXPECT_FALSE(f.fuzzyZero());
+}
+
+TEST(Vector2, GetVector)
+{
+  tf2_2d::Vector2 v(3.0, 4.0);
+  Eigen::Vector2d actual = v.getVector();
+  Eigen::Vector2d expected;
+  expected << 3.0, 4.0;
+  EXPECT_DOUBLE_EQ(expected(0), actual(0));
+  EXPECT_DOUBLE_EQ(expected(1), actual(1));
+}
+
+TEST(Vector2, GetHomogeneousMatrix)
+{
+  tf2_2d::Vector2 v(3.0, 4.0);
+  Eigen::Matrix3d actual = v.getHomogeneousMatrix();
+  Eigen::Matrix3d expected;
+  expected << 0, 0, 3.0, 0, 0, 4.0, 0, 0, 1;
+  EXPECT_DOUBLE_EQ(expected(0, 0), actual(0, 0));
+  EXPECT_DOUBLE_EQ(expected(0, 1), actual(0, 1));
+  EXPECT_DOUBLE_EQ(expected(0, 2), actual(0, 2));
+  EXPECT_DOUBLE_EQ(expected(1, 0), actual(1, 0));
+  EXPECT_DOUBLE_EQ(expected(1, 1), actual(1, 1));
+  EXPECT_DOUBLE_EQ(expected(1, 2), actual(1, 2));
+  EXPECT_DOUBLE_EQ(expected(2, 0), actual(2, 0));
+  EXPECT_DOUBLE_EQ(expected(2, 1), actual(2, 1));
+  EXPECT_DOUBLE_EQ(expected(2, 2), actual(2, 2));
+}
+
+TEST(Vector2, Stream)
+{
+  tf2_2d::Vector2 v(3.0, 4.0);
+  std::cout << v << std::endl;
+  SUCCEED();
 }
 
 int main(int argc, char **argv)

@@ -9,6 +9,8 @@
 #include <tf2/LinearMath/Scalar.h>  // NOLINT: The tf2 MinMax.h file does not include all requirements. Consequently,
 #include <tf2/LinearMath/MinMax.h>  // NOLINT: the order of the headers here is important.
 
+#include <Eigen/Core>
+
 
 namespace tf2_2d
 {
@@ -206,6 +208,20 @@ inline bool Vector2::fuzzyZero() const
   return length2() < TF2SIMD_EPSILON;
 }
 
+inline Eigen::Vector2d Vector2::getVector() const
+{
+  Eigen::Vector2d vec;
+  vec << x_, y_;
+  return vec;
+}
+
+inline Eigen::Matrix3d Vector2::getHomogeneousMatrix() const
+{
+  Eigen::Matrix3d matrix;
+  matrix << 0, 0, x_, 0, 0, y_, 0, 0, 1;
+  return matrix;
+}
+
 inline Vector2 operator+(Vector2 lhs, const Vector2& rhs)
 {
   lhs += rhs;
@@ -246,6 +262,11 @@ inline Vector2 operator/(Vector2 lhs, const Vector2& rhs)
 {
   lhs /= rhs;
   return lhs;
+}
+
+inline std::ostream& operator<<(std::ostream& stream, const Vector2& vector)
+{
+  return stream << "x: " << vector.x() << ", y: " << vector.y();
 }
 
 }  // namespace tf2_2d

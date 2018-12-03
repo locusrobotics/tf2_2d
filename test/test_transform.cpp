@@ -10,6 +10,7 @@
 #include <tf2_2d/transform.h>
 #include <tf2_2d/vector2.h>
 
+#include <Eigen/Core>
 #include <gtest/gtest.h>
 
 #include <cmath>
@@ -218,6 +219,30 @@ TEST(Transform, InverseTimes)
   EXPECT_NEAR(expected.x(), actual.x(), 1.0e-9);
   EXPECT_NEAR(expected.y(), actual.y(), 1.0e-9);
   EXPECT_NEAR(expected.angle(), actual.angle(), 1.0e-9);
+}
+
+TEST(Transform, GetHomogeneousMatrix)
+{
+  tf2_2d::Transform t(1.0, 2.0, 3.0);
+  Eigen::Matrix3d actual = t.getHomogeneousMatrix();
+  Eigen::Matrix3d expected;
+  expected << std::cos(3.0), -std::sin(3.0), 1.0, std::sin(3.0), std::cos(3.0), 2.0, 0, 0, 1;
+  EXPECT_DOUBLE_EQ(expected(0, 0), actual(0, 0));
+  EXPECT_DOUBLE_EQ(expected(0, 1), actual(0, 1));
+  EXPECT_DOUBLE_EQ(expected(0, 2), actual(0, 2));
+  EXPECT_DOUBLE_EQ(expected(1, 0), actual(1, 0));
+  EXPECT_DOUBLE_EQ(expected(1, 1), actual(1, 1));
+  EXPECT_DOUBLE_EQ(expected(1, 2), actual(1, 2));
+  EXPECT_DOUBLE_EQ(expected(2, 0), actual(2, 0));
+  EXPECT_DOUBLE_EQ(expected(2, 1), actual(2, 1));
+  EXPECT_DOUBLE_EQ(expected(2, 2), actual(2, 2));
+}
+
+TEST(Transform, Stream)
+{
+  tf2_2d::Transform t(1.0, 2.0, 3.0);
+  std::cout << t << std::endl;
+  SUCCEED();
 }
 
 int main(int argc, char **argv)

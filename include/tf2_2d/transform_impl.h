@@ -13,6 +13,7 @@
 #include <tf2_2d/rotation.h>
 #include <tf2_2d/vector2.h>
 
+#include <Eigen/Core>
 
 namespace tf2_2d
 {
@@ -129,6 +130,15 @@ inline Transform Transform::inverseTimes(const Transform& other) const
   return inverse() * other;
 }
 
+inline Eigen::Matrix3d Transform::getHomogeneousMatrix() const
+{
+  Eigen::Matrix3d matrix;
+  matrix.topLeftCorner<2, 2>() = rotation_.getRotationMatrix();
+  matrix.topRightCorner<2, 1>() = translation_.getVector();
+  matrix.bottomRows<1>() << 0, 0, 1;
+  return matrix;
+}
+
 inline Transform operator*(Transform lhs, const Transform& rhs)
 {
   lhs *= rhs;
@@ -143,6 +153,11 @@ inline Vector2 operator*(const Transform& lhs, const Vector2& rhs)
 inline Rotation operator*(const Transform& lhs, const Rotation& rhs)
 {
   return lhs.rotation() + rhs;
+}
+
+inline std::ostream& operator<<(std::ostream& stream, const Transform& transform)
+{
+  return stream << "x: " << transform.x() << ", y: " << transform.y() << ", yaw: " << transform.yaw();
 }
 
 }  // namespace tf2_2d

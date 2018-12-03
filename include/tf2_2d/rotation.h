@@ -9,6 +9,8 @@
 #include <tf2/LinearMath/Scalar.h>
 #include <tf2_2d/vector2.h>
 
+#include <Eigen/Core>
+
 
 namespace tf2_2d
 {
@@ -168,6 +170,16 @@ public:
    */
   bool fuzzyZero() const;
 
+  /**
+   * @brief Get a 2x2 rotation matrix
+   */
+  Eigen::Matrix2d getRotationMatrix() const;
+
+  /**
+   * @brief Get a 3x3 homogeneous transformation matrix with just the rotation portion populated
+   */
+  Eigen::Matrix3d getHomogeneousMatrix() const;
+
 private:
   tf2Scalar angle_;  //!< Storage for the angle in radians
   mutable tf2Scalar cos_angle_;  //!< Storage for cos(angle) so we only compute it once
@@ -224,6 +236,11 @@ Rotation operator/(Rotation lhs, const tf2Scalar rhs);
  * @brief Rotate a vector by this rotation
  */
 Vector2 operator*(const Rotation& lhs, const Vector2& rhs);
+
+/**
+ * @brief Stream the rotation in human-readable format
+ */
+std::ostream& operator<<(std::ostream& stream, const Rotation& rotation);
 
 }  // namespace tf2_2d
 

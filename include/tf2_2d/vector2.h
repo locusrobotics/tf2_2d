@@ -8,6 +8,8 @@
 
 #include <tf2/LinearMath/Scalar.h>
 
+#include <Eigen/Core>
+
 
 namespace tf2_2d
 {
@@ -251,6 +253,16 @@ public:
    */
   bool fuzzyZero() const;
 
+  /**
+   * @brief Get an Eigen vector representation
+   */
+  Eigen::Vector2d getVector() const;
+
+  /**
+   * @brief Get a 3x3 homogeneous transformation matrix with just the translation portion populated
+   */
+  Eigen::Matrix3d getHomogeneousMatrix() const;
+
 private:
   tf2Scalar x_;  //!< Storage for the X value
   tf2Scalar y_;  //!< Storage for the Y value
@@ -290,6 +302,11 @@ Vector2 operator/(Vector2 lhs, const tf2Scalar rhs);
  * @brief Element-wise division of two vectors
  */
 Vector2 operator/(Vector2 lhs, const Vector2& rhs);
+
+/**
+ * @brief Stream the vector in human-readable format
+ */
+std::ostream& operator<<(std::ostream& stream, const Vector2& vector);
 
 }  // namespace tf2_2d
 
