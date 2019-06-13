@@ -14,10 +14,11 @@ find_package(Eigen3 REQUIRED)
 catkin_package(
   INCLUDE_DIRS
     include
-    ${EIGEN3_INCLUDE_DIRS}
   CATKIN_DEPENDS
     roscpp
     tf2
+  DEPENDS
+    EIGEN3
 )
 
 ###########
@@ -48,7 +49,6 @@ if(CATKIN_ENABLE_TESTING)
   )
 
   find_package(roslint REQUIRED)
-  find_package(rostest REQUIRED)
 
   # Lint tests
   set(ROSLINT_CPP_OPTS "--filter=-build/c++11,-runtime/references")
