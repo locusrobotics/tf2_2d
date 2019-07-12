@@ -2,6 +2,13 @@
 Changelog for package tf2_2d
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Tailor: Updating Jenkinsfile
+* License cleanup (`#3 <https://github.com/locusrobotics/tf2_2d/issues/3>`_)
+* Tailor: Updating Jenkinsfile
+* Contributors: Stephen Williams, locus-services
+
 0.4.0 (2019-03-18)
 ------------------
 * Tailor: Updating Jenkinsfile
