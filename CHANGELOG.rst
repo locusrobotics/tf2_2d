@@ -2,8 +2,8 @@
 Changelog for package tf2_2d
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.5.0 (2019-07-12)
+------------------
 * Tailor: Updating Jenkinsfile
 * License cleanup (`#3 <https://github.com/locusrobotics/tf2_2d/issues/3>`_)
 * Tailor: Updating Jenkinsfile
