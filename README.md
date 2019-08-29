@@ -74,3 +74,26 @@ auto v4 = r2.rotate(v1);             // Does not need to compute sin/cos because
 tf2_2d::Rotation r3 = r1.inverse();  // Inverts and transfers sin/cos to r3
 auto v5 = r3.rotate(v1);             // Does not need to compute sin/cos because it stole the cached values from r1
 ```
+
+##  Python support
+Python support is in progress. At the moment just the Vector2 class has been wrapped. And the Python library is not
+being installed yet. For the following example to work, the tf2_2d.so file must be in your search path.
+```
+$ cd $HOME/ros_workspace/devel/.private/tf2_2d/lib/
+$ python
+
+Python 2.7.15+ (default, Nov 27 2018, 23:36:35) 
+[GCC 7.3.0] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+
+>>> from tf2_2d import Vector2
+>>> v1 = Vector2(1, 2)
+>>> v2 = Vector2(2, 7)
+>>> v1.dot(v2)
+16.0
+>>> v1 == v2
+False
+>>> v3 = v1 + v2
+>>> print v3
+x: 3, y: 9
+```

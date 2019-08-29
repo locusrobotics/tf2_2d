@@ -9,7 +9,12 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   tf2
 )
+
 find_package(Eigen3 REQUIRED)
+find_package(Boost REQUIRED COMPONENTS python)
+find_package(PythonLibs)
+
+# TODO(swilliams) Add support for python2 and python3
 
 catkin_package(
   INCLUDE_DIRS
@@ -27,6 +32,22 @@ catkin_package(
 
 # Header-only package. Nothing to build.
 
+# Python bindings
+add_library(tf2_2d SHARED
+  src/bindings.cpp
+)
+target_include_directories(tf2_2d
+  PUBLIC
+    ${Boost_INCLUDE_DIRS}
+    ${PYTHON_INCLUDE_DIRS}
+)
+target_link_libraries(tf2_2d
+  ${Boost_LIBRARIES}
+  ${PYTHON_LIBRARIES}
+)
+set_target_properties(tf2_2d PROPERTIES SUFFIX .so)
+set_target_properties(tf2_2d PROPERTIES PREFIX "")
+
 #############
 ## Install ##
 #############
@@ -35,6 +56,8 @@ catkin_package(
 install(DIRECTORY include/${PROJECT_NAME}/
   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
 )
+
+# TODO(swilliams) I need to figure out where and how to install the tf2_2d.so file that contains the python bindings
 
 #############
 ## Testing ##
