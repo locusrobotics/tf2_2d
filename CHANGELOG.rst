@@ -2,8 +2,8 @@
 Changelog for package tf2_2d
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.6.0 (2020-10-02)
+------------------
 * Tailor: Updating Jenkinsfile
 * Tailor: Updating Jenkinsfile
 * Tailor: Updating Jenkinsfile
