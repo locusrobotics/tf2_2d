@@ -2,8 +2,8 @@
 Changelog for package tf2_2d
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.6.1 (2021-07-11)
+------------------
 * Contributors: locus-services
 
 0.6.0 (2020-10-02)
