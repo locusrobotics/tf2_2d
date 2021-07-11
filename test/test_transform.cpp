@@ -55,7 +55,7 @@ TEST(Transform, Constructor)
   rotation_3d.setRPY(M_PI / 2.0, M_PI / 3.0, M_PI / 4.0);
   tf2::Vector3 translation_3d(1.0, 2.0, 3.0);
   tf2::Transform transform_3d(rotation_3d, translation_3d);
-  EXPECT_NO_THROW(tf2_2d::Transform(transform_3d));
+  EXPECT_NO_THROW(tf2_2d::Transform test_trans(transform_3d));
 
   {
     tf2_2d::Transform t(tf2_2d::Rotation(3.0), tf2_2d::Vector2(1.0, 2.0));
