@@ -2,45 +2,30 @@
 Changelog for package tf2_2d
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Contributors: locus-services
+
 0.6.0 (2020-10-02)
 ------------------
-* Tailor: Updating Jenkinsfile
-* Tailor: Updating Jenkinsfile
-* Tailor: Updating Jenkinsfile
-* Tailor: Updating Jenkinsfile
 * Contributors: locus-services
 
 0.5.0 (2019-07-12)
 ------------------
-* Tailor: Updating Jenkinsfile
 * License cleanup (`#3 <https://github.com/locusrobotics/tf2_2d/issues/3>`_)
-* Tailor: Updating Jenkinsfile
 * Contributors: Stephen Williams, locus-services
 
 0.4.0 (2019-03-18)
 ------------------
-* Tailor: Updating Jenkinsfile
-* Tailor: Updating Jenkinsfile
-* Tailor: Updating Jenkinsfile
-* Tailor: Updating Jenkinsfile
 * Contributors: locus-services
 
 0.3.0 (2019-01-16)
 ------------------
-* Tailor: Updating Jenkinsfile
-* Tailor: Updating Jenkinsfile
-* Tailor: Updating Jenkinsfile
-* Tailor: Updating Jenkinsfile
-* Tailor: Updating Jenkinsfile
-* Tailor: Updating Jenkinsfile
-* Tailor: Updating Jenkinsfile
-* Tailor: Updating Jenkinsfile
 * [RST-1548] transform covariance (`#2 <https://github.com/locusrobotics/tf2_2d/issues/2>`_)
   * Added conversions to Eigen types
   * Added stream operators
   * Added some additional toMsg conversions using a non-tf2-standard signature
   * Added functions to transform SE2 covariance matrices
-* Tailor: Updating Jenkinsfile
 * Tailor: Creating Jenkinsfile
 * Expanded readme
 * Renamed the Transform rotation value to 'yaw'
