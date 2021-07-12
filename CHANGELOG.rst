@@ -2,6 +2,11 @@
 Changelog for package tf2_2d
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fix test build issue in noetic
+* Contributors: Tom Moore
+
 0.6.1 (2021-07-11)
 ------------------
 * Contributors: locus-services
