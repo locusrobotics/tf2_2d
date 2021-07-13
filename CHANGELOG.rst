@@ -2,8 +2,8 @@
 Changelog for package tf2_2d
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.6.3 (2021-07-13)
+------------------
 * Fixing package license
 * Contributors: Tom Moore
 
