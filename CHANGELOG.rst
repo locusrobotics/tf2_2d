@@ -2,6 +2,11 @@
 Changelog for package tf2_2d
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fixing package license
+* Contributors: Tom Moore
+
 0.6.2 (2021-07-12)
 ------------------
 * Fix test build issue in noetic
