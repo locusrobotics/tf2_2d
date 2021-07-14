@@ -2,8 +2,8 @@
 Changelog for package tf2_2d
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.6.4 (2021-07-14)
+------------------
 * Handling issue with tf2 circular dependency (`#4 <https://github.com/locusrobotics/tf2_2d/issues/4>`_)
   * Handling issue with tf2 circular dependency and other warnings
 * Contributors: Tom Moore
