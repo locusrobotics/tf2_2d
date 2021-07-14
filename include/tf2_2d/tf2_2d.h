@@ -52,6 +52,7 @@
 #include <tf2_2d/rotation.h>
 #include <tf2_2d/transform.h>
 #include <tf2_2d/vector2.h>
+#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
 
 #include <boost/array.hpp>
 #include <Eigen/Core>

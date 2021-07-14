@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.0.2)
 project(tf2_2d)
 
 add_compile_options(-std=c++14)
@@ -8,6 +8,7 @@ add_compile_options(-Werror)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   tf2
+  tf2_geometry_msgs
 )
 find_package(Eigen3 REQUIRED)
 
@@ -17,6 +18,7 @@ catkin_package(
   CATKIN_DEPENDS
     roscpp
     tf2
+    tf2_geometry_msgs
   DEPENDS
     EIGEN3
 )
