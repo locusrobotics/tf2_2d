@@ -8,7 +8,7 @@ add_compile_options(-Werror)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   tf2
-  tf2_geometry_msgs  # Included to solve a build issue caused by https://github.com/ros/geometry2/issues/275
+  tf2_geometry_msgs
 )
 find_package(Eigen3 REQUIRED)
 
