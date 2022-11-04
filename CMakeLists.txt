@@ -1,103 +1,93 @@
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.13.4)
 project(tf2_2d)
 
-add_compile_options(-std=c++14)
-add_compile_options(-Wall)
-add_compile_options(-Werror)
-
-find_package(catkin REQUIRED COMPONENTS
-  roscpp
-  tf2
-  tf2_geometry_msgs
-)
+find_package(ament_cmake REQUIRED)
+find_package(Boost REQUIRED)
 find_package(Eigen3 REQUIRED)
-
-catkin_package(
-  INCLUDE_DIRS
-    include
-  CATKIN_DEPENDS
-    roscpp
-    tf2
-    tf2_geometry_msgs
-  DEPENDS
-    EIGEN3
-)
+find_package(rclcpp REQUIRED)
+find_package(tf2 REQUIRED)
+find_package(tf2_geometry_msgs REQUIRED)
+find_package(tf2_ros REQUIRED)
 
 ###########
 ## Build ##
 ###########
 
-# Header-only package. Nothing to build.
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Werror)
+endif()
+
+add_library(tf2_2d INTERFACE)
+target_compile_features(tf2_2d INTERFACE cxx_std_14)
+target_include_directories(tf2_2d INTERFACE
+  "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+  "$<INSTALL_INTERFACE:include/${PROJECT_NAME}>")
+target_link_libraries(tf2_2d INTERFACE
+  Boost::boost
+  Eigen3::Eigen
+  rclcpp::rclcpp
+  tf2::tf2
+  tf2_ros::tf2_ros
+  ${tf2_geometry_msgs_TARGETS})
 
 #############
 ## Install ##
 #############
 
-# Mark cpp header files for installation
-install(DIRECTORY include/${PROJECT_NAME}/
-  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+# Install header files
+install(DIRECTORY include/
+  DESTINATION include/${PROJECT_NAME}
 )
+
+install(
+  TARGETS tf2_2d EXPORT tf2_2d-export
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin
+)
+
+# Export modern CMake target
+ament_export_targets(tf2_2d-export)
 
 #############
 ## Testing ##
 #############
 
-if(CATKIN_ENABLE_TESTING)
-
-  include_directories(
-    include
-    ${catkin_INCLUDE_DIRS}
-    ${EIGEN3_INCLUDE_DIRS}
-  )
-
-  find_package(roslint REQUIRED)
-
-  # Lint tests
-  set(ROSLINT_CPP_OPTS "--filter=-build/c++11,-runtime/references")
-  roslint_cpp()
-  roslint_add_test()
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  ament_lint_auto_find_test_dependencies()
 
   # Conversion Tests
-  catkin_add_gtest(test_conversions
+  ament_add_gtest(test_conversions
     test/test_conversions.cpp
   )
-  add_dependencies(test_conversions
-    ${catkin_EXPORTED_TARGETS}
-  )
   target_link_libraries(test_conversions
-    ${catkin_LIBRARIES}
+    tf2_2d
   )
 
   # Rotation Tests
-  catkin_add_gtest(test_rotation
+  ament_add_gtest(test_rotation
     test/test_rotation.cpp
   )
-  add_dependencies(test_rotation
-    ${catkin_EXPORTED_TARGETS}
-  )
   target_link_libraries(test_rotation
-    ${catkin_LIBRARIES}
+    tf2_2d
   )
 
   # Transform Tests
-  catkin_add_gtest(test_transform
+  ament_add_gtest(test_transform
     test/test_transform.cpp
   )
-  add_dependencies(test_transform
-    ${catkin_EXPORTED_TARGETS}
-  )
   target_link_libraries(test_transform
-    ${catkin_LIBRARIES}
+    tf2_2d
   )
 
   # Vector2 Tests
-  catkin_add_gtest(test_vector2
+  ament_add_gtest(test_vector2
     test/test_vector2.cpp
   )
-  add_dependencies(test_vector2
-    ${catkin_EXPORTED_TARGETS}
-  )
   target_link_libraries(test_vector2
-    ${catkin_LIBRARIES}
+    tf2_2d
   )
 endif()
+
+ament_package()
