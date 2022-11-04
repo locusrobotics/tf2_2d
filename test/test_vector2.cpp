@@ -606,9 +606,3 @@ TEST(Vector2, Stream)
   std::cout << v << std::endl;
   SUCCEED();
 }
-
-int main(int argc, char **argv)
-{
-  testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
-}
