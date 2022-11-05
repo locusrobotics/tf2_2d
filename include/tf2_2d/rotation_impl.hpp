@@ -56,8 +56,8 @@ inline Rotation::Rotation(const tf2Scalar angle)
   setValue(angle);
 }
 
-inline Rotation::Rotation(const tf2Scalar angle, tf2Scalar cos_angle, tf2Scalar sin_angle) :
-  angle_(angle),
+inline Rotation::Rotation(const tf2Scalar angle, tf2Scalar cos_angle, tf2Scalar sin_angle)
+: angle_(angle),
   cos_angle_(cos_angle),
   sin_angle_(sin_angle)
 {
@@ -68,59 +68,60 @@ inline Rotation Rotation::operator-() const
   return inverse();
 }
 
-inline Rotation& Rotation::operator+=(const Rotation& rhs)
+inline Rotation & Rotation::operator+=(const Rotation & rhs)
 {
   setValue(angle_ + rhs.angle_);
   return *this;
 }
 
-inline Rotation& Rotation::operator-=(const Rotation& rhs)
+inline Rotation & Rotation::operator-=(const Rotation & rhs)
 {
   setValue(angle_ - rhs.angle_);
   return *this;
 }
 
-inline Rotation& Rotation::operator*=(const tf2Scalar rhs)
+inline Rotation & Rotation::operator*=(const tf2Scalar rhs)
 {
   setValue(angle_ * rhs);
   return *this;
 }
 
-inline Rotation& Rotation::operator/=(const tf2Scalar rhs)
+inline Rotation & Rotation::operator/=(const tf2Scalar rhs)
 {
   tf2FullAssert(rhs != tf2Scalar(0.0));
   return *this *= tf2Scalar(1.0) / rhs;
 }
 
-inline bool Rotation::operator==(const Rotation& other) const
+inline bool Rotation::operator==(const Rotation & other) const
 {
-  return (angle_ == other.angle_);
+  return angle_ == other.angle_;
 }
 
-inline bool Rotation::operator!=(const Rotation& other) const
+inline bool Rotation::operator!=(const Rotation & other) const
 {
   return !operator==(other);
 }
 
-inline tf2Scalar Rotation::distance2(const Rotation& other) const
+inline tf2Scalar Rotation::distance2(const Rotation & other) const
 {
   tf2Scalar d = distance(other);
   return d * d;
 }
 
-inline tf2Scalar Rotation::distance(const Rotation& other) const
+inline tf2Scalar Rotation::distance(const Rotation & other) const
 {
   return (other - *this).angle();
 }
 
-inline Vector2 Rotation::rotate(const Vector2& vec) const
+inline Vector2 Rotation::rotate(const Vector2 & vec) const
 {
   populateTrigCache();
-  return Vector2(vec.x() * cos_angle_ - vec.y() * sin_angle_,
-                 vec.x() * sin_angle_ + vec.y() * cos_angle_);
+  return Vector2(
+    vec.x() * cos_angle_ - vec.y() * sin_angle_,
+    vec.x() * sin_angle_ + vec.y() * cos_angle_);
 }
 
-inline Vector2 Rotation::unrotate(const Vector2& vec) const
+inline Vector2 Rotation::unrotate(const Vector2 & vec) const
 {
   // Populate the cache before inverse() is called. The cache is propagated to inverse() temporary object, and we get
   // the benefit of having the cache populated for future calls using this object.
@@ -137,22 +138,19 @@ inline Rotation Rotation::inverse() const
 inline Rotation Rotation::absolute() const
 {
   // A little effort to keep the trig cache populated
-  if (angle_ < 0)
-  {
+  if (angle_ < 0) {
     return inverse();
-  }
-  else
-  {
+  } else {
     return *this;
   }
 }
 
-inline Rotation Rotation::lerp(const Rotation& other, const tf2Scalar ratio) const
+inline Rotation Rotation::lerp(const Rotation & other, const tf2Scalar ratio) const
 {
   return Rotation(angle_ + ratio * (other - *this).angle());
 }
 
-inline const tf2Scalar& Rotation::getAngle() const
+inline const tf2Scalar & Rotation::getAngle() const
 {
   return angle_;
 }
@@ -162,18 +160,16 @@ inline void Rotation::setAngle(const tf2Scalar angle)
   setValue(angle);
 }
 
-inline void Rotation::setMax(const Rotation& other)
+inline void Rotation::setMax(const Rotation & other)
 {
-  if (other.angle_ > angle_)
-  {
+  if (other.angle_ > angle_) {
     *this = other;
   }
 }
 
-inline void Rotation::setMin(const Rotation& other)
+inline void Rotation::setMin(const Rotation & other)
 {
-  if (other.angle_ < angle_)
-  {
+  if (other.angle_ < angle_) {
     *this = other;
   }
 }
@@ -220,7 +216,7 @@ inline Eigen::Matrix3d Rotation::getHomogeneousMatrix() const
   return matrix;
 }
 
-inline Rotation& Rotation::wrap()
+inline Rotation & Rotation::wrap()
 {
   // Handle the 2*Pi roll-over
   angle_ -= TF2SIMD_2_PI * std::floor((angle_ + TF2SIMD_PI) / TF2SIMD_2_PI);
@@ -229,20 +225,19 @@ inline Rotation& Rotation::wrap()
 
 inline void Rotation::populateTrigCache() const
 {
-  if ((cos_angle_ == 0) && (sin_angle_ == 0))
-  {
+  if ((cos_angle_ == 0) && (sin_angle_ == 0)) {
     cos_angle_ = tf2Cos(angle_);
     sin_angle_ = tf2Sin(angle_);
   }
 }
 
-inline Rotation operator+(Rotation lhs, const Rotation& rhs)
+inline Rotation operator+(Rotation lhs, const Rotation & rhs)
 {
   lhs += rhs;
   return lhs;
 }
 
-inline Rotation operator-(Rotation lhs, const Rotation& rhs)
+inline Rotation operator-(Rotation lhs, const Rotation & rhs)
 {
   lhs -= rhs;
   return lhs;
@@ -266,12 +261,12 @@ inline Rotation operator/(Rotation lhs, const tf2Scalar rhs)
   return lhs;
 }
 
-inline Vector2 operator*(const Rotation& lhs, const Vector2& rhs)
+inline Vector2 operator*(const Rotation & lhs, const Vector2 & rhs)
 {
   return lhs.rotate(rhs);
 }
 
-inline std::ostream& operator<<(std::ostream& stream, const Rotation& rotation)
+inline std::ostream & operator<<(std::ostream & stream, const Rotation & rotation)
 {
   return stream << "angle: " << rotation.angle();
 }

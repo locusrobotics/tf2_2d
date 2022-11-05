@@ -74,62 +74,62 @@ public:
    *
    * @param rhs The rotation to add to this one
    */
-  Rotation& operator+=(const Rotation& rhs);
+  Rotation & operator+=(const Rotation & rhs);
 
   /**
    * @brief Subtract a rotation from this one
    *
    * @param rhs The rotation to subtract
    */
-  Rotation& operator-=(const Rotation& rhs);
+  Rotation & operator-=(const Rotation & rhs);
 
   /**
    * @brief Scale the rotation
    *
    * @param rhs Scale factor
    */
-  Rotation& operator*=(const tf2Scalar rhs);
+  Rotation & operator*=(const tf2Scalar rhs);
 
   /**
    * @brief Inversely scale the rotation
    *
    * @param rhs Scale factor to divide by
    */
-  Rotation& operator/=(const tf2Scalar rhs);
+  Rotation & operator/=(const tf2Scalar rhs);
 
   /**
    * @brief Check if two rotations are equal
    */
-  bool operator==(const Rotation& other) const;
+  bool operator==(const Rotation & other) const;
 
   /**
    * @brief Check if two vectors are not equal
    */
-  bool operator!=(const Rotation& other) const;
+  bool operator!=(const Rotation & other) const;
 
   /**
    * @brief Return the distance squared between this and another rotation
    */
-  tf2Scalar distance2(const Rotation& other) const;
+  tf2Scalar distance2(const Rotation & other) const;
 
   /**
    * @brief Return the distance between this and another rotation
    */
-  tf2Scalar distance(const Rotation& other) const;
+  tf2Scalar distance(const Rotation & other) const;
 
   /**
    * @brief Rotate a vector by this rotation
    *
    * @param vec The vector to rotate
    */
-  Vector2 rotate(const Vector2& vec) const;
+  Vector2 rotate(const Vector2 & vec) const;
 
   /**
    * @brief Rotate a vector by the inverse of this rotation
    *
    * @param vec The vector to rotate
    */
-  Vector2 unrotate(const Vector2& vec) const;
+  Vector2 unrotate(const Vector2 & vec) const;
 
   /**
    * @brief Return the inverse of this rotation
@@ -149,13 +149,13 @@ public:
    * @param other The other rotation
    * @param ratio The ratio of this to other (ratio=0 => return this, ratio=1 => return other)
    */
-  Rotation lerp(const Rotation& other, const tf2Scalar ratio) const;
+  Rotation lerp(const Rotation & other, const tf2Scalar ratio) const;
 
   /**
    * @brief Return the angle value in radians
    */
-  const tf2Scalar& getAngle() const;
-  const tf2Scalar& angle() const { return getAngle(); }
+  const tf2Scalar & getAngle() const;
+  const tf2Scalar & angle() const {return getAngle();}
 
   /**
    * @brief Set the angle value in radians
@@ -167,14 +167,14 @@ public:
    *
    * @param other The other Rotation to compare with
    */
-  void setMax(const Rotation& other);
+  void setMax(const Rotation & other);
 
   /**
    * @brief Set the angle to the min of this and another rotation
    *
    * @param other The other Rotation to compare with
    */
-  void setMin(const Rotation& other);
+  void setMin(const Rotation & other);
 
   /**
    * @brief Set the rotation to the provided angle in radians
@@ -225,7 +225,7 @@ private:
   /**
    * @brief Wrap the rotation to the range [-Pi, Pi)
    */
-  Rotation& wrap();
+  Rotation & wrap();
 
   /**
    * @brief Populate the cos/sin cache if it is not already populated.
@@ -238,12 +238,12 @@ private:
 /**
  * @brief Add two rotations
  */
-Rotation operator+(Rotation lhs, const Rotation& rhs);
+Rotation operator+(Rotation lhs, const Rotation & rhs);
 
 /**
  * @brief Subtract two rotations
  */
-Rotation operator-(Rotation lhs, const Rotation& rhs);
+Rotation operator-(Rotation lhs, const Rotation & rhs);
 
 /**
  * @brief Scale a rotation
@@ -263,12 +263,12 @@ Rotation operator/(Rotation lhs, const tf2Scalar rhs);
 /**
  * @brief Rotate a vector by this rotation
  */
-Vector2 operator*(const Rotation& lhs, const Vector2& rhs);
+Vector2 operator*(const Rotation & lhs, const Vector2 & rhs);
 
 /**
  * @brief Stream the rotation in human-readable format
  */
-std::ostream& operator<<(std::ostream& stream, const Rotation& rotation);
+std::ostream & operator<<(std::ostream & stream, const Rotation & rotation);
 
 }  // namespace tf2_2d
 

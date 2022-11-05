@@ -69,21 +69,21 @@
 namespace tf2
 {
 
-inline void toMsg(const tf2_2d::Vector2& in, geometry_msgs::msg::Vector3& msg)
+inline void toMsg(const tf2_2d::Vector2 & in, geometry_msgs::msg::Vector3 & msg)
 {
   msg.x = in.x();
   msg.y = in.y();
   msg.z = 0;
 }
 
-inline void toMsg(const tf2_2d::Vector2& in, geometry_msgs::msg::Point& msg)
+inline void toMsg(const tf2_2d::Vector2 & in, geometry_msgs::msg::Point & msg)
 {
   msg.x = in.x();
   msg.y = in.y();
   msg.z = 0;
 }
 
-inline void toMsg(const tf2_2d::Vector2& in, geometry_msgs::msg::Point32& msg)
+inline void toMsg(const tf2_2d::Vector2 & in, geometry_msgs::msg::Point32 & msg)
 {
   msg.x = in.x();
   msg.y = in.y();
@@ -91,67 +91,73 @@ inline void toMsg(const tf2_2d::Vector2& in, geometry_msgs::msg::Point32& msg)
 }
 
 // You can only choose one destination message type with this signature
-inline geometry_msgs::msg::Vector3 toMsg(const tf2_2d::Vector2& in)
+inline geometry_msgs::msg::Vector3 toMsg(const tf2_2d::Vector2 & in)
 {
   geometry_msgs::msg::Vector3 msg;
   toMsg(in, msg);
   return msg;
 }
 
-inline void fromMsg(const geometry_msgs::msg::Vector3& msg, tf2_2d::Vector2& out)
+inline void fromMsg(const geometry_msgs::msg::Vector3 & msg, tf2_2d::Vector2 & out)
 {
   out.setX(msg.x);
   out.setY(msg.y);
 }
 
-inline void fromMsg(const geometry_msgs::msg::Point& msg, tf2_2d::Vector2& out)
+inline void fromMsg(const geometry_msgs::msg::Point & msg, tf2_2d::Vector2 & out)
 {
   out.setX(msg.x);
   out.setY(msg.y);
 }
 
-inline void fromMsg(const geometry_msgs::msg::Point32& msg, tf2_2d::Vector2& out)
+inline void fromMsg(const geometry_msgs::msg::Point32 & msg, tf2_2d::Vector2 & out)
 {
   out.setX(msg.x);
   out.setY(msg.y);
 }
 
-inline void toMsg(const tf2::Stamped<tf2_2d::Vector2>& in, geometry_msgs::msg::Vector3Stamped& msg)
+inline void toMsg(
+  const tf2::Stamped<tf2_2d::Vector2> & in,
+  geometry_msgs::msg::Vector3Stamped & msg)
 {
   msg.header.stamp = tf2_ros::toMsg(in.stamp_);
   msg.header.frame_id = in.frame_id_;
-  toMsg(static_cast<const tf2_2d::Vector2&>(in), msg.vector);
+  toMsg(static_cast<const tf2_2d::Vector2 &>(in), msg.vector);
 }
 
-inline void toMsg(const tf2::Stamped<tf2_2d::Vector2>& in, geometry_msgs::msg::PointStamped& msg)
+inline void toMsg(const tf2::Stamped<tf2_2d::Vector2> & in, geometry_msgs::msg::PointStamped & msg)
 {
   msg.header.stamp = tf2_ros::toMsg(in.stamp_);
   msg.header.frame_id = in.frame_id_;
-  toMsg(static_cast<const tf2_2d::Vector2&>(in), msg.point);
+  toMsg(static_cast<const tf2_2d::Vector2 &>(in), msg.point);
 }
 
-inline geometry_msgs::msg::Vector3Stamped toMsg(const tf2::Stamped<tf2_2d::Vector2>& in)
+inline geometry_msgs::msg::Vector3Stamped toMsg(const tf2::Stamped<tf2_2d::Vector2> & in)
 {
   geometry_msgs::msg::Vector3Stamped msg;
   toMsg(in, msg);
   return msg;
 }
 
-inline void fromMsg(const geometry_msgs::msg::Vector3Stamped& msg, tf2::Stamped<tf2_2d::Vector2>& out)
+inline void fromMsg(
+  const geometry_msgs::msg::Vector3Stamped & msg,
+  tf2::Stamped<tf2_2d::Vector2> & out)
 {
   out.stamp_ = tf2_ros::fromMsg(msg.header.stamp);
   out.frame_id_ = msg.header.frame_id;
-  fromMsg(msg.vector, static_cast<tf2_2d::Vector2&>(out));
+  fromMsg(msg.vector, static_cast<tf2_2d::Vector2 &>(out));
 }
 
-inline void fromMsg(const geometry_msgs::msg::PointStamped& msg, tf2::Stamped<tf2_2d::Vector2>& out)
+inline void fromMsg(
+  const geometry_msgs::msg::PointStamped & msg,
+  tf2::Stamped<tf2_2d::Vector2> & out)
 {
   out.stamp_ = tf2_ros::fromMsg(msg.header.stamp);
   out.frame_id_ = msg.header.frame_id;
-  fromMsg(msg.point, static_cast<tf2_2d::Vector2&>(out));
+  fromMsg(msg.point, static_cast<tf2_2d::Vector2 &>(out));
 }
 
-inline void toMsg(const tf2_2d::Rotation& in, geometry_msgs::msg::Quaternion& msg)
+inline void toMsg(const tf2_2d::Rotation & in, geometry_msgs::msg::Quaternion & msg)
 {
   msg.x = 0;
   msg.y = 0;
@@ -159,66 +165,70 @@ inline void toMsg(const tf2_2d::Rotation& in, geometry_msgs::msg::Quaternion& ms
   msg.w = std::cos(0.5 * in.angle());
 }
 
-inline geometry_msgs::msg::Quaternion toMsg(const tf2_2d::Rotation& in)
+inline geometry_msgs::msg::Quaternion toMsg(const tf2_2d::Rotation & in)
 {
   geometry_msgs::msg::Quaternion msg;
   toMsg(in, msg);
   return msg;
 }
 
-inline void fromMsg(const geometry_msgs::msg::Quaternion& msg, tf2_2d::Rotation& out)
+inline void fromMsg(const geometry_msgs::msg::Quaternion & msg, tf2_2d::Rotation & out)
 {
   out.setAngle(tf2::getYaw(msg));
 }
 
-inline void toMsg(const tf2::Stamped<tf2_2d::Rotation>& in, geometry_msgs::msg::QuaternionStamped& msg)
+inline void toMsg(
+  const tf2::Stamped<tf2_2d::Rotation> & in,
+  geometry_msgs::msg::QuaternionStamped & msg)
 {
   msg.header.stamp = tf2_ros::toMsg(in.stamp_);
   msg.header.frame_id = in.frame_id_;
-  toMsg(static_cast<const tf2_2d::Rotation&>(in), msg.quaternion);
+  toMsg(static_cast<const tf2_2d::Rotation &>(in), msg.quaternion);
 }
 
-inline geometry_msgs::msg::QuaternionStamped toMsg(const tf2::Stamped<tf2_2d::Rotation>& in)
+inline geometry_msgs::msg::QuaternionStamped toMsg(const tf2::Stamped<tf2_2d::Rotation> & in)
 {
   geometry_msgs::msg::QuaternionStamped msg;
   toMsg(in, msg);
   return msg;
 }
 
-inline void fromMsg(const geometry_msgs::msg::QuaternionStamped& msg, tf2::Stamped<tf2_2d::Rotation>& out)
+inline void fromMsg(
+  const geometry_msgs::msg::QuaternionStamped & msg,
+  tf2::Stamped<tf2_2d::Rotation> & out)
 {
   out.stamp_ = tf2_ros::fromMsg(msg.header.stamp);
   out.frame_id_ = msg.header.frame_id;
-  fromMsg(msg.quaternion, static_cast<tf2_2d::Rotation&>(out));
+  fromMsg(msg.quaternion, static_cast<tf2_2d::Rotation &>(out));
 }
 
-inline void toMsg(const tf2_2d::Transform& in, geometry_msgs::msg::Transform& msg)
+inline void toMsg(const tf2_2d::Transform & in, geometry_msgs::msg::Transform & msg)
 {
   toMsg(in.translation(), msg.translation);
   toMsg(in.rotation(), msg.rotation);
 }
 
-inline void toMsg(const tf2_2d::Transform& in, geometry_msgs::msg::Pose& msg)
+inline void toMsg(const tf2_2d::Transform & in, geometry_msgs::msg::Pose & msg)
 {
   toMsg(in.translation(), msg.position);
   toMsg(in.rotation(), msg.orientation);
 }
 
-inline void toMsg(const tf2_2d::Transform& in, geometry_msgs::msg::Pose2D& msg)
+inline void toMsg(const tf2_2d::Transform & in, geometry_msgs::msg::Pose2D & msg)
 {
   msg.x = in.x();
   msg.y = in.y();
   msg.theta = in.theta();
 }
 
-inline geometry_msgs::msg::Transform toMsg(const tf2_2d::Transform& in)
+inline geometry_msgs::msg::Transform toMsg(const tf2_2d::Transform & in)
 {
   geometry_msgs::msg::Transform msg;
   toMsg(in, msg);
   return msg;
 }
 
-inline void fromMsg(const geometry_msgs::msg::Transform& msg, tf2_2d::Transform& out)
+inline void fromMsg(const geometry_msgs::msg::Transform & msg, tf2_2d::Transform & out)
 {
   tf2_2d::Rotation rotation;
   fromMsg(msg.rotation, rotation);
@@ -228,7 +238,7 @@ inline void fromMsg(const geometry_msgs::msg::Transform& msg, tf2_2d::Transform&
   out.setTranslation(translation);
 }
 
-inline void fromMsg(const geometry_msgs::msg::Pose& msg, tf2_2d::Transform& out)
+inline void fromMsg(const geometry_msgs::msg::Pose & msg, tf2_2d::Transform & out)
 {
   tf2_2d::Rotation rotation;
   fromMsg(msg.orientation, rotation);
@@ -238,61 +248,70 @@ inline void fromMsg(const geometry_msgs::msg::Pose& msg, tf2_2d::Transform& out)
   out.setTranslation(translation);
 }
 
-inline void fromMsg(const geometry_msgs::msg::Pose2D& msg, tf2_2d::Transform& out)
+inline void fromMsg(const geometry_msgs::msg::Pose2D & msg, tf2_2d::Transform & out)
 {
   out.setAngle(msg.theta);
   out.setX(msg.x);
   out.setY(msg.y);
 }
 
-inline void toMsg(const tf2::Stamped<tf2_2d::Transform>& in, geometry_msgs::msg::TransformStamped& msg)
+inline void toMsg(
+  const tf2::Stamped<tf2_2d::Transform> & in,
+  geometry_msgs::msg::TransformStamped & msg)
 {
   msg.header.stamp = tf2_ros::toMsg(in.stamp_);
   msg.header.frame_id = in.frame_id_;
-  toMsg(static_cast<const tf2_2d::Transform&>(in), msg.transform);
+  toMsg(static_cast<const tf2_2d::Transform &>(in), msg.transform);
 }
 
-inline void toMsg(const tf2::Stamped<tf2_2d::Transform>& in, geometry_msgs::msg::PoseStamped& msg)
+inline void toMsg(const tf2::Stamped<tf2_2d::Transform> & in, geometry_msgs::msg::PoseStamped & msg)
 {
   msg.header.stamp = tf2_ros::toMsg(in.stamp_);
   msg.header.frame_id = in.frame_id_;
-  toMsg(static_cast<const tf2_2d::Transform&>(in), msg.pose);
+  toMsg(static_cast<const tf2_2d::Transform &>(in), msg.pose);
 }
 
-inline geometry_msgs::msg::TransformStamped toMsg(const tf2::Stamped<tf2_2d::Transform>& in)
+inline geometry_msgs::msg::TransformStamped toMsg(const tf2::Stamped<tf2_2d::Transform> & in)
 {
   geometry_msgs::msg::TransformStamped msg;
   msg.header.stamp = tf2_ros::toMsg(in.stamp_);
   msg.header.frame_id = in.frame_id_;
-  msg.transform = toMsg(static_cast<const tf2_2d::Transform&>(in));
+  msg.transform = toMsg(static_cast<const tf2_2d::Transform &>(in));
   return msg;
 }
 
-inline void fromMsg(const geometry_msgs::msg::TransformStamped& msg, tf2::Stamped<tf2_2d::Transform>& out)
+inline void fromMsg(
+  const geometry_msgs::msg::TransformStamped & msg,
+  tf2::Stamped<tf2_2d::Transform> & out)
 {
   out.stamp_ = tf2_ros::fromMsg(msg.header.stamp);
   out.frame_id_ = msg.header.frame_id;
-  fromMsg(msg.transform, static_cast<tf2_2d::Transform&>(out));
+  fromMsg(msg.transform, static_cast<tf2_2d::Transform &>(out));
 }
 
-inline void fromMsg(const geometry_msgs::msg::PoseStamped& msg, tf2::Stamped<tf2_2d::Transform>& out)
+inline void fromMsg(
+  const geometry_msgs::msg::PoseStamped & msg,
+  tf2::Stamped<tf2_2d::Transform> & out)
 {
   out.stamp_ = tf2_ros::fromMsg(msg.header.stamp);
   out.frame_id_ = msg.header.frame_id;
-  fromMsg(msg.pose, static_cast<tf2_2d::Transform&>(out));
+  fromMsg(msg.pose, static_cast<tf2_2d::Transform &>(out));
 }
-
 
 
 inline
-Eigen::Matrix3d transformCovariance(const Eigen::Matrix3d& cov_in, const tf2_2d::Transform& transform)
+Eigen::Matrix3d transformCovariance(
+  const Eigen::Matrix3d & cov_in,
+  const tf2_2d::Transform & transform)
 {
   Eigen::Matrix3d R = transform.rotation().getHomogeneousMatrix();
   return R * cov_in * R.transpose();
 }
 
 inline
-std::array<double, 9> transformCovariance(const std::array<double, 9>& cov_in, const tf2_2d::Transform& transform)
+std::array<double, 9> transformCovariance(
+  const std::array<double, 9> & cov_in,
+  const tf2_2d::Transform & transform)
 {
   Eigen::Matrix3d R = transform.rotation().getHomogeneousMatrix();
   std::array<double, 9> cov_out;
@@ -303,7 +322,9 @@ std::array<double, 9> transformCovariance(const std::array<double, 9>& cov_in, c
 }
 
 inline
-boost::array<double, 9> transformCovariance(const boost::array<double, 9>& cov_in, const tf2_2d::Transform& transform)
+boost::array<double, 9> transformCovariance(
+  const boost::array<double, 9> & cov_in,
+  const tf2_2d::Transform & transform)
 {
   Eigen::Matrix3d R = transform.rotation().getHomogeneousMatrix();
   boost::array<double, 9> cov_out;

@@ -64,7 +64,7 @@ public:
    * @param rotation    Rotation
    * @param translation Translation
    */
-  Transform(const Rotation& rotation, const Vector2& translation);
+  Transform(const Rotation & rotation, const Vector2 & translation);
 
   /**
    * @brief Constructor from individual x, y, yaw elements
@@ -80,22 +80,22 @@ public:
    *
    * @param transform - The tf2 Transform object from which we will initialize this object
    */
-  explicit Transform(const tf2::Transform &transform);
+  explicit Transform(const tf2::Transform & transform);
 
   /**
    * @brief Compose this transform with another transform on the right
    */
-  Transform& operator*=(const Transform& rhs);
+  Transform & operator*=(const Transform & rhs);
 
   /**
    * @brief Test if two transforms have all elements equal
    */
-  bool operator==(const Transform& rhs);
+  bool operator==(const Transform & rhs);
 
   /**
    * @brief Test if two transforms are not equal
    */
-  bool operator!=(const Transform& rhs);
+  bool operator!=(const Transform & rhs);
 
   /**
    * @brief Return the linear interpolation between this and another transform
@@ -103,54 +103,54 @@ public:
    * @param other The other transform
    * @param ratio The ratio of this to other (ratio=0 => return this, ratio=1 => return other)
    */
-  Transform lerp(const Transform& other, const tf2Scalar ratio) const;
+  Transform lerp(const Transform & other, const tf2Scalar ratio) const;
 
   /**
    * @brief Return the rotation for this transform
    */
-  const Rotation& getRotation() const;
-  const Rotation& rotation() const { return getRotation(); }
+  const Rotation & getRotation() const;
+  const Rotation & rotation() const {return getRotation();}
 
   /**
    * @brief Return the translation for this transform
    */
-  const Vector2& getTranslation() const;
-  const Vector2& translation() const { return getTranslation(); }
+  const Vector2 & getTranslation() const;
+  const Vector2 & translation() const {return getTranslation();}
 
   /**
    * @brief Set the rotation for this transform
    */
-  void setRotation(const Rotation& other);
+  void setRotation(const Rotation & other);
 
   /**
    * @brief Set the translation for this transform
    */
-  void setTranslation(const Vector2& other);
+  void setTranslation(const Vector2 & other);
 
   /**
    * @brief Return the X value
    */
-  const tf2Scalar& getX() const;
-  const tf2Scalar& x() const { return getX(); }
+  const tf2Scalar & getX() const;
+  const tf2Scalar & x() const {return getX();}
 
   /**
    * @brief Return the Y value
    */
-  const tf2Scalar& getY() const;
-  const tf2Scalar& y() const { return getY(); }
+  const tf2Scalar & getY() const;
+  const tf2Scalar & y() const {return getY();}
 
   /**
    * @brief Return the yaw value
    */
-  const tf2Scalar& getYaw() const;
-  const tf2Scalar& yaw() const { return getYaw(); }
+  const tf2Scalar & getYaw() const;
+  const tf2Scalar & yaw() const {return getYaw();}
   // There are a lot of common aliases for yaw
-  const tf2Scalar& getAngle() const { return getYaw(); }
-  const tf2Scalar& angle() const { return getYaw(); }
-  const tf2Scalar& getHeading() const { return getYaw(); }
-  const tf2Scalar& heading() const { return getYaw(); }
-  const tf2Scalar& getTheta() const { return getYaw(); }
-  const tf2Scalar& theta() const { return getYaw(); }
+  const tf2Scalar & getAngle() const {return getYaw();}
+  const tf2Scalar & angle() const {return getYaw();}
+  const tf2Scalar & getHeading() const {return getYaw();}
+  const tf2Scalar & heading() const {return getYaw();}
+  const tf2Scalar & getTheta() const {return getYaw();}
+  const tf2Scalar & theta() const {return getYaw();}
 
   /**
    * @brief Set the X value
@@ -167,9 +167,9 @@ public:
    */
   void setYaw(const tf2Scalar yaw);
   // There are a lot of common aliases for yaw
-  void setAngle(const tf2Scalar angle) { setYaw(angle); }
-  void setHeading(const tf2Scalar heading) { setYaw(heading); }
-  void setTheta(const tf2Scalar theta) { setYaw(theta); }
+  void setAngle(const tf2Scalar angle) {setYaw(angle);}
+  void setHeading(const tf2Scalar heading) {setYaw(heading);}
+  void setTheta(const tf2Scalar theta) {setYaw(theta);}
 
   /**
    * @brief Set this transformation to the identity
@@ -188,7 +188,7 @@ public:
    *
    * @param other The other transform
    */
-  Transform inverseTimes(const Transform& other) const;
+  Transform inverseTimes(const Transform & other) const;
 
   /**
    * @brief Get a 3x3 homogeneous transformation matrix
@@ -203,24 +203,24 @@ private:
 /**
  * @brief Compose two transforms
  */
-Transform operator*(Transform lhs, const Transform& rhs);
+Transform operator*(Transform lhs, const Transform & rhs);
 
 /**
  * @brief Return the transformed vector
  *
  * Output = This * Vector
  */
-Vector2 operator*(const Transform& lhs, const Vector2& rhs);
+Vector2 operator*(const Transform & lhs, const Vector2 & rhs);
 
 /**
  * @brief Return the transformed rotation
  */
-Rotation operator*(const Transform& lhs, const Rotation& rhs);
+Rotation operator*(const Transform & lhs, const Rotation & rhs);
 
 /**
  * @brief Stream the transformation in human-readable format
  */
-std::ostream& operator<<(std::ostream& stream, const Transform& transform);
+std::ostream & operator<<(std::ostream & stream, const Transform & transform);
 
 }  // namespace tf2_2d
 
