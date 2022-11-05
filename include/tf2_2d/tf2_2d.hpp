@@ -31,8 +31,18 @@
  *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef TF2_2D_TF2_2D_H
-#define TF2_2D_TF2_2D_H
+#ifndef TF2_2D__TF2_2D_HPP_
+#define TF2_2D__TF2_2D_HPP_
+
+#include <Eigen/Core>
+
+#include <tf2/convert.h>
+#include <tf2/transform_datatypes.h>
+#include <tf2/utils.h>
+#include <tf2_ros/buffer_interface.h>
+
+#include <array>
+#include <cmath>
 
 #include <geometry_msgs/msg/quaternion.hpp>
 #include <geometry_msgs/msg/quaternion_stamped.hpp>
@@ -46,20 +56,12 @@
 #include <geometry_msgs/msg/transform_stamped.hpp>
 #include <geometry_msgs/msg/vector3.hpp>
 #include <geometry_msgs/msg/vector3_stamped.hpp>
-#include <tf2/convert.h>
-#include <tf2/transform_datatypes.h>
-#include <tf2/utils.h>
 #include <tf2_2d/rotation.hpp>
 #include <tf2_2d/transform.hpp>
 #include <tf2_2d/vector2.hpp>
-#include <tf2_ros/buffer_interface.h>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
 
 #include <boost/array.hpp>
-#include <Eigen/Core>
-
-#include <array>
-#include <cmath>
 
 /**
  * This file contains conversion functions from standard ROS message types to/from the 2D geometry objects. These are
@@ -336,4 +338,4 @@ boost::array<double, 9> transformCovariance(
 
 }  // namespace tf2
 
-#endif  // TF2_2D_TF2_2D_H
+#endif  // TF2_2D__TF2_2D_HPP_

@@ -31,13 +31,14 @@
  *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef TF2_2D_VECTOR2_IMPL_H
-#define TF2_2D_VECTOR2_IMPL_H
-
-#include <tf2/LinearMath/Scalar.h>  // NOLINT: The tf2 MinMax.h file does not include all requirements. Consequently,
-#include <tf2/LinearMath/MinMax.h>  // NOLINT: the order of the headers here is important.
+#ifndef TF2_2D__VECTOR2_IMPL_HPP_
+#define TF2_2D__VECTOR2_IMPL_HPP_
 
 #include <Eigen/Core>
+
+// TODO(sloretz) remove Scalar.h when ros2/geometry2#559 is merged
+#include <tf2/LinearMath/Scalar.h>
+#include <tf2/LinearMath/MinMax.h>
 
 
 namespace tf2_2d
@@ -300,4 +301,4 @@ inline std::ostream & operator<<(std::ostream & stream, const Vector2 & vector)
 
 }  // namespace tf2_2d
 
-#endif  // TF2_2D_VECTOR2_IMPL_H
+#endif  // TF2_2D__VECTOR2_IMPL_HPP_

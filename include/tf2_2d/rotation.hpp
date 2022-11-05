@@ -31,13 +31,13 @@
  *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef TF2_2D_ROTATION_H
-#define TF2_2D_ROTATION_H
+#ifndef TF2_2D__ROTATION_HPP_
+#define TF2_2D__ROTATION_HPP_
 
 #include <tf2/LinearMath/Scalar.h>
-#include <tf2_2d/vector2.hpp>
-
 #include <Eigen/Core>
+
+#include <tf2_2d/vector2.hpp>
 
 
 namespace tf2_2d
@@ -274,4 +274,4 @@ std::ostream & operator<<(std::ostream & stream, const Rotation & rotation);
 
 #include <tf2_2d/rotation_impl.hpp>
 
-#endif  // TF2_2D_ROTATION_H
+#endif  // TF2_2D__ROTATION_HPP_

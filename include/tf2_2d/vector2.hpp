@@ -31,8 +31,8 @@
  *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef TF2_2D_VECTOR2_H
-#define TF2_2D_VECTOR2_H
+#ifndef TF2_2D__VECTOR2_HPP_
+#define TF2_2D__VECTOR2_HPP_
 
 #include <tf2/LinearMath/Scalar.h>
 
@@ -340,4 +340,4 @@ std::ostream & operator<<(std::ostream & stream, const Vector2 & vector);
 
 #include <tf2_2d/vector2_impl.hpp>
 
-#endif  // TF2_2D_VECTOR2_H
+#endif  // TF2_2D__VECTOR2_HPP_

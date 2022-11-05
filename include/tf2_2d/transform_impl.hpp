@@ -31,17 +31,18 @@
  *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef TF2_2D_TRANSFORM_IMPL_H
-#define TF2_2D_TRANSFORM_IMPL_H
-
-#include <tf2/utils.h>                  // NOLINT: The tf2 MinMax.h file does not include all requirements. Consequently,
-#include <tf2/LinearMath/Scalar.h>      // NOLINT: the order of the headers here is important.
-#include <tf2/LinearMath/Transform.h>   //
-#include <tf2/LinearMath/MinMax.h>      //
-#include <tf2_2d/rotation.hpp>
-#include <tf2_2d/vector2.hpp>
+#ifndef TF2_2D__TRANSFORM_IMPL_HPP_
+#define TF2_2D__TRANSFORM_IMPL_HPP_
 
 #include <Eigen/Core>
+
+// TODO(sloretz) remove Scalar.h when ros2/geometry2#559 is merged
+#include <tf2/LinearMath/Scalar.h>
+#include <tf2/LinearMath/MinMax.h>
+#include <tf2/LinearMath/Transform.h>
+#include <tf2/utils.h>
+#include <tf2_2d/rotation.hpp>
+#include <tf2_2d/vector2.hpp>
 
 namespace tf2_2d
 {
@@ -193,4 +194,4 @@ inline std::ostream & operator<<(std::ostream & stream, const Transform & transf
 
 }  // namespace tf2_2d
 
-#endif  // TF2_2D_TRANSFORM_IMPL_H
+#endif  // TF2_2D__TRANSFORM_IMPL_HPP_

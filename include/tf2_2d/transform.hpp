@@ -31,15 +31,15 @@
  *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef TF2_2D_TRANSFORM_H
-#define TF2_2D_TRANSFORM_H
+#ifndef TF2_2D__TRANSFORM_HPP_
+#define TF2_2D__TRANSFORM_HPP_
+
+#include <Eigen/Core>
 
 #include <tf2/LinearMath/Scalar.h>
 #include <tf2/LinearMath/Transform.h>
 #include <tf2_2d/rotation.hpp>
 #include <tf2_2d/vector2.hpp>
-
-#include <Eigen/Core>
 
 
 namespace tf2_2d
@@ -226,4 +226,4 @@ std::ostream & operator<<(std::ostream & stream, const Transform & transform);
 
 #include <tf2_2d/transform_impl.hpp>
 
-#endif  // TF2_2D_TRANSFORM_H
+#endif  // TF2_2D__TRANSFORM_HPP_

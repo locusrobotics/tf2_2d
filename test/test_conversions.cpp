@@ -31,6 +31,12 @@
  *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  */
+#include <Eigen/Core>
+#include <gtest/gtest.h>
+#include <tf2/transform_datatypes.h>
+#include <tf2_ros/buffer_interface.h>
+
+#include <boost/array.hpp>
 #include <geometry_msgs/msg/quaternion.hpp>
 #include <geometry_msgs/msg/quaternion_stamped.hpp>
 #include <geometry_msgs/msg/point.hpp>
@@ -44,16 +50,10 @@
 #include <geometry_msgs/msg/vector3.hpp>
 #include <geometry_msgs/msg/vector3_stamped.hpp>
 #include <rclcpp/time.hpp>
-#include <tf2/transform_datatypes.h>
 #include <tf2_2d/rotation.hpp>
 #include <tf2_2d/tf2_2d.hpp>
 #include <tf2_2d/transform.hpp>
 #include <tf2_2d/vector2.hpp>
-#include <tf2_ros/buffer_interface.h>
-
-#include <boost/array.hpp>
-#include <Eigen/Core>
-#include <gtest/gtest.h>
 
 
 TEST(Conversions, Vector2)

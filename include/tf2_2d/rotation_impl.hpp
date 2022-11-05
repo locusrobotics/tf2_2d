@@ -31,17 +31,18 @@
  *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef TF2_2D_ROTATION_IMPL_H
-#define TF2_2D_ROTATION_IMPL_H
-
-#include <tf2/LinearMath/Scalar.h>  // NOLINT: The tf2 MinMax.h file does not include all requirements. Consequently,
-#include <tf2/LinearMath/MinMax.h>  // NOLINT: the order of the headers here is important.
-#include <tf2_2d/vector2.hpp>
+#ifndef TF2_2D__ROTATION_IMPL_HPP_
+#define TF2_2D__ROTATION_IMPL_HPP_
 
 #include <Eigen/Core>
 
+// TODO(sloretz) remove Scalar.h when ros2/geometry2#559 is merged
+#include <tf2/LinearMath/Scalar.h>
+#include <tf2/LinearMath/MinMax.h>
+
 #include <cmath>
 
+#include <tf2_2d/vector2.hpp>
 
 namespace tf2_2d
 {
@@ -123,7 +124,8 @@ inline Vector2 Rotation::rotate(const Vector2 & vec) const
 
 inline Vector2 Rotation::unrotate(const Vector2 & vec) const
 {
-  // Populate the cache before inverse() is called. The cache is propagated to inverse() temporary object, and we get
+  // Populate the cache before inverse() is called.
+  // The cache is propagated to inverse() temporary object, and we get
   // the benefit of having the cache populated for future calls using this object.
   populateTrigCache();
   return inverse().rotate(vec);
@@ -273,4 +275,4 @@ inline std::ostream & operator<<(std::ostream & stream, const Rotation & rotatio
 
 }  // namespace tf2_2d
 
-#endif  // TF2_2D_ROTATION_IMPL_H
+#endif  // TF2_2D__ROTATION_IMPL_HPP_

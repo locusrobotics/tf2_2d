@@ -31,11 +31,11 @@
  *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  */
-#include <tf2_2d/rotation.hpp>
-#include <tf2_2d/vector2.hpp>
-
 #include <Eigen/Core>
 #include <gtest/gtest.h>
+
+#include <tf2_2d/rotation.hpp>
+#include <tf2_2d/vector2.hpp>
 
 
 TEST(Rotation, Constructor)
