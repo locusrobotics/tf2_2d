@@ -49,9 +49,9 @@
 #include <tf2/convert.h>
 #include <tf2/transform_datatypes.h>
 #include <tf2/utils.h>
-#include <tf2_2d/rotation.h>
-#include <tf2_2d/transform.h>
-#include <tf2_2d/vector2.h>
+#include <tf2_2d/rotation.hpp>
+#include <tf2_2d/transform.hpp>
+#include <tf2_2d/vector2.hpp>
 #include <tf2_ros/buffer_interface.h>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
 

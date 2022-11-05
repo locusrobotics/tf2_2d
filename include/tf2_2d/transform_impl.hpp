@@ -38,8 +38,8 @@
 #include <tf2/LinearMath/Scalar.h>      // NOLINT: the order of the headers here is important.
 #include <tf2/LinearMath/Transform.h>   //
 #include <tf2/LinearMath/MinMax.h>      //
-#include <tf2_2d/rotation.h>
-#include <tf2_2d/vector2.h>
+#include <tf2_2d/rotation.hpp>
+#include <tf2_2d/vector2.hpp>
 
 #include <Eigen/Core>
 

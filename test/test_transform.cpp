@@ -34,9 +34,9 @@
 #include <tf2/LinearMath/Quaternion.h>
 #include <tf2/LinearMath/Transform.h>
 #include <tf2/LinearMath/Vector3.h>
-#include <tf2_2d/rotation.h>
-#include <tf2_2d/transform.h>
-#include <tf2_2d/vector2.h>
+#include <tf2_2d/rotation.hpp>
+#include <tf2_2d/transform.hpp>
+#include <tf2_2d/vector2.hpp>
 
 #include <Eigen/Core>
 #include <gtest/gtest.h>

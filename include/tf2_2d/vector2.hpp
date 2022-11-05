@@ -338,6 +338,6 @@ std::ostream& operator<<(std::ostream& stream, const Vector2& vector);
 
 }  // namespace tf2_2d
 
-#include <tf2_2d/vector2_impl.h>
+#include <tf2_2d/vector2_impl.hpp>
 
 #endif  // TF2_2D_VECTOR2_H

@@ -35,7 +35,7 @@
 #define TF2_2D_ROTATION_H
 
 #include <tf2/LinearMath/Scalar.h>
-#include <tf2_2d/vector2.h>
+#include <tf2_2d/vector2.hpp>
 
 #include <Eigen/Core>
 
@@ -272,6 +272,6 @@ std::ostream& operator<<(std::ostream& stream, const Rotation& rotation);
 
 }  // namespace tf2_2d
 
-#include <tf2_2d/rotation_impl.h>
+#include <tf2_2d/rotation_impl.hpp>
 
 #endif  // TF2_2D_ROTATION_H
