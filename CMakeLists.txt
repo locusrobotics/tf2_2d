@@ -28,7 +28,7 @@ target_link_libraries(tf2_2d INTERFACE
   rclcpp::rclcpp
   tf2::tf2
   tf2_ros::tf2_ros
-  ${tf2_geometry_msgs_TARGETS})
+  tf2_geometry_msgs::tf2_geometry_msgs)
 
 #############
 ## Install ##
