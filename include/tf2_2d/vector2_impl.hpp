@@ -36,8 +36,6 @@
 
 #include <Eigen/Core>
 
-// TODO(sloretz) remove Scalar.h when ros2/geometry2#559 is merged
-#include <tf2/LinearMath/Scalar.h>
 #include <tf2/LinearMath/MinMax.h>
 
 
