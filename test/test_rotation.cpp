@@ -31,11 +31,11 @@
  *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  */
-#include <tf2_2d/rotation.h>
-#include <tf2_2d/vector2.h>
-
 #include <Eigen/Core>
 #include <gtest/gtest.h>
+
+#include <tf2_2d/rotation.hpp>
+#include <tf2_2d/vector2.hpp>
 
 
 TEST(Rotation, Constructor)
@@ -406,10 +406,4 @@ TEST(Rotation, Stream)
   tf2_2d::Rotation r(3.0);
   std::cout << r << std::endl;
   SUCCEED();
-}
-
-int main(int argc, char **argv)
-{
-  testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
 }

@@ -31,17 +31,16 @@
  *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  */
+#include <Eigen/Core>
+#include <gtest/gtest.h>
 #include <tf2/LinearMath/Quaternion.h>
 #include <tf2/LinearMath/Transform.h>
 #include <tf2/LinearMath/Vector3.h>
-#include <tf2_2d/rotation.h>
-#include <tf2_2d/transform.h>
-#include <tf2_2d/vector2.h>
-
-#include <Eigen/Core>
-#include <gtest/gtest.h>
 
 #include <cmath>
+#include <tf2_2d/rotation.hpp>
+#include <tf2_2d/transform.hpp>
+#include <tf2_2d/vector2.hpp>
 
 
 TEST(Transform, Constructor)
@@ -271,10 +270,4 @@ TEST(Transform, Stream)
   tf2_2d::Transform t(1.0, 2.0, 3.0);
   std::cout << t << std::endl;
   SUCCEED();
-}
-
-int main(int argc, char **argv)
-{
-  testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
 }

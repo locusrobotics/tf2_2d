@@ -31,10 +31,10 @@
  *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  */
-#include <tf2_2d/vector2.h>
-
 #include <Eigen/Core>
 #include <gtest/gtest.h>
+
+#include <tf2_2d/vector2.hpp>
 
 
 TEST(Vector2, Constructor)
@@ -605,10 +605,4 @@ TEST(Vector2, Stream)
   tf2_2d::Vector2 v(3.0, 4.0);
   std::cout << v << std::endl;
   SUCCEED();
-}
-
-int main(int argc, char **argv)
-{
-  testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
 }

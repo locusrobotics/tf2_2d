@@ -31,17 +31,16 @@
  *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef TF2_2D_TRANSFORM_IMPL_H
-#define TF2_2D_TRANSFORM_IMPL_H
-
-#include <tf2/utils.h>                  // NOLINT: The tf2 MinMax.h file does not include all requirements. Consequently,
-#include <tf2/LinearMath/Scalar.h>      // NOLINT: the order of the headers here is important.
-#include <tf2/LinearMath/Transform.h>   //
-#include <tf2/LinearMath/MinMax.h>      //
-#include <tf2_2d/rotation.h>
-#include <tf2_2d/vector2.h>
+#ifndef TF2_2D__TRANSFORM_IMPL_HPP_
+#define TF2_2D__TRANSFORM_IMPL_HPP_
 
 #include <Eigen/Core>
+
+#include <tf2/LinearMath/MinMax.h>
+#include <tf2/LinearMath/Transform.h>
+#include <tf2/utils.h>
+#include <tf2_2d/rotation.hpp>
+#include <tf2_2d/vector2.hpp>
 
 namespace tf2_2d
 {
@@ -50,79 +49,81 @@ inline Transform::Transform()
 {
 }
 
-inline Transform::Transform(const Rotation& rotation, const Vector2& translation) :
-  rotation_(rotation),
+inline Transform::Transform(const Rotation & rotation, const Vector2 & translation)
+: rotation_(rotation),
   translation_(translation)
 {
 }
 
-inline Transform::Transform(const tf2Scalar x, const tf2Scalar y, const tf2Scalar yaw) :
-  rotation_(yaw),
+inline Transform::Transform(const tf2Scalar x, const tf2Scalar y, const tf2Scalar yaw)
+: rotation_(yaw),
   translation_(x, y)
 {
 }
 
-inline Transform::Transform(const tf2::Transform &transform) :
-  rotation_(tf2::getYaw(transform.getRotation())),
+inline Transform::Transform(const tf2::Transform & transform)
+: rotation_(tf2::getYaw(transform.getRotation())),
   translation_(transform.getOrigin().getX(), transform.getOrigin().getY())
 {
 }
 
-inline Transform& Transform::operator*=(const Transform& rhs)
+inline Transform & Transform::operator*=(const Transform & rhs)
 {
   translation_ = translation_ + rotation_.rotate(rhs.translation_);
   rotation_ = rotation_ + rhs.rotation_;
   return *this;
 }
 
-inline bool Transform::operator==(const Transform& rhs)
+inline bool Transform::operator==(const Transform & rhs)
 {
-  return ((rotation_ == rhs.rotation_) && (translation_ == rhs.translation_));
+  return (rotation_ == rhs.rotation_) && (translation_ == rhs.translation_);
 }
 
-inline bool Transform::operator!=(const Transform& rhs)
+inline bool Transform::operator!=(const Transform & rhs)
 {
   return !operator==(rhs);
 }
 
-inline Transform Transform::lerp(const Transform& other, const tf2Scalar ratio) const
+inline Transform Transform::lerp(const Transform & other, const tf2Scalar ratio) const
 {
   // Following the tf2 3D implementation, interpolation of translation and rotation
   // is performed independently of each other
-  return Transform(rotation_.lerp(other.rotation_, ratio), translation_.lerp(other.translation_, ratio));
+  return Transform(
+    rotation_.lerp(other.rotation_, ratio),
+    translation_.lerp(other.translation_, ratio));
 }
 
-inline const Rotation& Transform::getRotation() const
+inline const Rotation & Transform::getRotation() const
 {
   return rotation_;
 }
 
-inline const Vector2& Transform::getTranslation() const
+inline const Vector2 & Transform::getTranslation() const
 {
   return translation_;
 }
 
-inline const tf2Scalar& Transform::getX() const
+inline const tf2Scalar & Transform::getX() const
 {
   return translation_.getX();
 }
 
-inline const tf2Scalar& Transform::getY() const
+inline const tf2Scalar & Transform::getY() const
 {
   return translation_.getY();
 }
 
-inline const tf2Scalar& Transform::getYaw() const
+inline const tf2Scalar & Transform::getYaw() const
 {
   return rotation_.getAngle();
 }
 
-inline void Transform::setRotation(const Rotation& other)
+inline void Transform::setRotation(const Rotation & other)
 {
   rotation_ = other;
 }
 
-inline void Transform::setTranslation(const Vector2& other)
+inline void Transform::setTranslation(const Vector2 & other)
 {
   translation_ = other;
 }
@@ -153,7 +154,7 @@ inline Transform Transform::inverse() const
   return Transform(rotation_.inverse(), rotation_.unrotate(-translation_));
 }
 
-inline Transform Transform::inverseTimes(const Transform& other) const
+inline Transform Transform::inverseTimes(const Transform & other) const
 {
   return inverse() * other;
 }
@@ -167,27 +168,28 @@ inline Eigen::Matrix3d Transform::getHomogeneousMatrix() const
   return matrix;
 }
 
-inline Transform operator*(Transform lhs, const Transform& rhs)
+inline Transform operator*(Transform lhs, const Transform & rhs)
 {
   lhs *= rhs;
   return lhs;
 }
 
-inline Vector2 operator*(const Transform& lhs, const Vector2& rhs)
+inline Vector2 operator*(const Transform & lhs, const Vector2 & rhs)
 {
   return lhs.rotation().rotate(rhs) + lhs.translation();
 }
 
-inline Rotation operator*(const Transform& lhs, const Rotation& rhs)
+inline Rotation operator*(const Transform & lhs, const Rotation & rhs)
 {
   return lhs.rotation() + rhs;
 }
 
-inline std::ostream& operator<<(std::ostream& stream, const Transform& transform)
+inline std::ostream & operator<<(std::ostream & stream, const Transform & transform)
 {
-  return stream << "x: " << transform.x() << ", y: " << transform.y() << ", yaw: " << transform.yaw();
+  return stream << "x: " << transform.x() << ", y: " << transform.y() << ", yaw: " <<
+         transform.yaw();
 }
 
 }  // namespace tf2_2d
 
-#endif  // TF2_2D_TRANSFORM_IMPL_H
+#endif  // TF2_2D__TRANSFORM_IMPL_HPP_

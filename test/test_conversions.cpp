@@ -31,27 +31,29 @@
  *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  */
-#include <geometry_msgs/Quaternion.h>
-#include <geometry_msgs/QuaternionStamped.h>
-#include <geometry_msgs/Point.h>
-#include <geometry_msgs/Point32.h>
-#include <geometry_msgs/PointStamped.h>
-#include <geometry_msgs/Pose.h>
-#include <geometry_msgs/PoseStamped.h>
-#include <geometry_msgs/Pose2D.h>
-#include <geometry_msgs/Transform.h>
-#include <geometry_msgs/TransformStamped.h>
-#include <geometry_msgs/Vector3.h>
-#include <geometry_msgs/Vector3Stamped.h>
-#include <tf2/transform_datatypes.h>
-#include <tf2_2d/rotation.h>
-#include <tf2_2d/tf2_2d.h>
-#include <tf2_2d/transform.h>
-#include <tf2_2d/vector2.h>
-
-#include <boost/array.hpp>
 #include <Eigen/Core>
 #include <gtest/gtest.h>
+#include <tf2/transform_datatypes.h>
+#include <tf2_ros/buffer_interface.h>
+
+#include <boost/array.hpp>
+#include <geometry_msgs/msg/quaternion.hpp>
+#include <geometry_msgs/msg/quaternion_stamped.hpp>
+#include <geometry_msgs/msg/point.hpp>
+#include <geometry_msgs/msg/point32.hpp>
+#include <geometry_msgs/msg/point_stamped.hpp>
+#include <geometry_msgs/msg/pose.hpp>
+#include <geometry_msgs/msg/pose_stamped.hpp>
+#include <geometry_msgs/msg/pose2_d.hpp>
+#include <geometry_msgs/msg/transform.hpp>
+#include <geometry_msgs/msg/transform_stamped.hpp>
+#include <geometry_msgs/msg/vector3.hpp>
+#include <geometry_msgs/msg/vector3_stamped.hpp>
+#include <rclcpp/time.hpp>
+#include <tf2_2d/rotation.hpp>
+#include <tf2_2d/tf2_2d.hpp>
+#include <tf2_2d/transform.hpp>
+#include <tf2_2d/vector2.hpp>
 
 
 TEST(Conversions, Vector2)
@@ -59,9 +61,9 @@ TEST(Conversions, Vector2)
   // Test conversion to/from the Vector2 type
   {
     tf2_2d::Vector2 in(1.0, 2.0);
-    geometry_msgs::Vector3 actual;
+    geometry_msgs::msg::Vector3 actual;
     tf2::toMsg(in, actual);
-    geometry_msgs::Vector3 expected;
+    geometry_msgs::msg::Vector3 expected;
     expected.x = 1.0;
     expected.y = 2.0;
     expected.z = 0.0;
@@ -71,9 +73,9 @@ TEST(Conversions, Vector2)
   }
   {
     tf2_2d::Vector2 in(1.0, 2.0);
-    geometry_msgs::Point actual;
+    geometry_msgs::msg::Point actual;
     tf2::toMsg(in, actual);
-    geometry_msgs::Point expected;
+    geometry_msgs::msg::Point expected;
     expected.x = 1.0;
     expected.y = 2.0;
     expected.z = 0.0;
@@ -83,9 +85,9 @@ TEST(Conversions, Vector2)
   }
   {
     tf2_2d::Vector2 in(1.0, 2.0);
-    geometry_msgs::Point32 actual;
+    geometry_msgs::msg::Point32 actual;
     tf2::toMsg(in, actual);
-    geometry_msgs::Point32 expected;
+    geometry_msgs::msg::Point32 expected;
     expected.x = 1.0;
     expected.y = 2.0;
     expected.z = 0.0;
@@ -95,8 +97,8 @@ TEST(Conversions, Vector2)
   }
   {
     tf2_2d::Vector2 in(1.0, 2.0);
-    geometry_msgs::Vector3 actual = tf2::toMsg(in);
-    geometry_msgs::Vector3 expected;
+    geometry_msgs::msg::Vector3 actual = tf2::toMsg(in);
+    geometry_msgs::msg::Vector3 expected;
     expected.x = 1.0;
     expected.y = 2.0;
     expected.z = 0.0;
@@ -105,7 +107,7 @@ TEST(Conversions, Vector2)
     EXPECT_EQ(expected.z, actual.z);
   }
   {
-    geometry_msgs::Vector3 msg;
+    geometry_msgs::msg::Vector3 msg;
     msg.x = 1.0;
     msg.y = 2.0;
     msg.z = 3.0;
@@ -116,7 +118,7 @@ TEST(Conversions, Vector2)
     EXPECT_EQ(expected.y(), actual.y());
   }
   {
-    geometry_msgs::Point msg;
+    geometry_msgs::msg::Point msg;
     msg.x = 1.0;
     msg.y = 2.0;
     msg.z = 3.0;
@@ -127,7 +129,7 @@ TEST(Conversions, Vector2)
     EXPECT_EQ(expected.y(), actual.y());
   }
   {
-    geometry_msgs::Point32 msg;
+    geometry_msgs::msg::Point32 msg;
     msg.x = 1.0;
     msg.y = 2.0;
     msg.z = 3.0;
@@ -138,11 +140,12 @@ TEST(Conversions, Vector2)
     EXPECT_EQ(expected.y(), actual.y());
   }
   {
-    tf2::Stamped<tf2_2d::Vector2> in(tf2_2d::Vector2(1.0, 2.0), ros::Time(1234, 5678), "test_frame");
-    geometry_msgs::Vector3Stamped actual;
+    tf2::Stamped<tf2_2d::Vector2> in(tf2_2d::Vector2(1.0, 2.0),
+      tf2_ros::fromRclcpp(rclcpp::Time(1234, 5678)), "test_frame");
+    geometry_msgs::msg::Vector3Stamped actual;
     tf2::toMsg(in, actual);
-    geometry_msgs::Vector3Stamped expected;
-    expected.header.stamp = ros::Time(1234, 5678);
+    geometry_msgs::msg::Vector3Stamped expected;
+    expected.header.stamp = rclcpp::Time(1234, 5678);
     expected.header.frame_id = "test_frame";
     expected.vector.x = 1.0;
     expected.vector.y = 2.0;
@@ -154,11 +157,12 @@ TEST(Conversions, Vector2)
     EXPECT_EQ(expected.vector.z, actual.vector.z);
   }
   {
-    tf2::Stamped<tf2_2d::Vector2> in(tf2_2d::Vector2(1.0, 2.0), ros::Time(1234, 5678), "test_frame");
-    geometry_msgs::PointStamped actual;
+    tf2::Stamped<tf2_2d::Vector2> in(tf2_2d::Vector2(1.0, 2.0),
+      tf2_ros::fromRclcpp(rclcpp::Time(1234, 5678)), "test_frame");
+    geometry_msgs::msg::PointStamped actual;
     tf2::toMsg(in, actual);
-    geometry_msgs::PointStamped expected;
-    expected.header.stamp = ros::Time(1234, 5678);
+    geometry_msgs::msg::PointStamped expected;
+    expected.header.stamp = rclcpp::Time(1234, 5678);
     expected.header.frame_id = "test_frame";
     expected.point.x = 1.0;
     expected.point.y = 2.0;
@@ -170,10 +174,11 @@ TEST(Conversions, Vector2)
     EXPECT_EQ(expected.point.z, actual.point.z);
   }
   {
-    tf2::Stamped<tf2_2d::Vector2> in(tf2_2d::Vector2(1.0, 2.0), ros::Time(1234, 5678), "test_frame");
-    geometry_msgs::Vector3Stamped actual = tf2::toMsg(in);
-    geometry_msgs::Vector3Stamped expected;
-    expected.header.stamp = ros::Time(1234, 5678);
+    tf2::Stamped<tf2_2d::Vector2> in(tf2_2d::Vector2(1.0, 2.0),
+      tf2_ros::fromRclcpp(rclcpp::Time(1234, 5678)), "test_frame");
+    geometry_msgs::msg::Vector3Stamped actual = tf2::toMsg(in);
+    geometry_msgs::msg::Vector3Stamped expected;
+    expected.header.stamp = rclcpp::Time(1234, 5678);
     expected.header.frame_id = "test_frame";
     expected.vector.x = 1.0;
     expected.vector.y = 2.0;
@@ -185,30 +190,32 @@ TEST(Conversions, Vector2)
     EXPECT_EQ(expected.vector.z, actual.vector.z);
   }
   {
-    geometry_msgs::Vector3Stamped msg;
-    msg.header.stamp = ros::Time(1234, 5678);
+    geometry_msgs::msg::Vector3Stamped msg;
+    msg.header.stamp = rclcpp::Time(1234, 5678);
     msg.header.frame_id = "test_frame";
     msg.vector.x = 1.0;
     msg.vector.y = 2.0;
     msg.vector.z = 3.0;
     tf2::Stamped<tf2_2d::Vector2> actual;
     tf2::fromMsg(msg, actual);
-    tf2::Stamped<tf2_2d::Vector2> expected(tf2_2d::Vector2(1.0, 2.0), ros::Time(1234, 5678), "test_frame");
+    tf2::Stamped<tf2_2d::Vector2> expected(tf2_2d::Vector2(1.0, 2.0),
+      tf2_ros::fromRclcpp(rclcpp::Time(1234, 5678)), "test_frame");
     EXPECT_EQ(expected.stamp_, actual.stamp_);
     EXPECT_EQ(expected.frame_id_, actual.frame_id_);
     EXPECT_EQ(expected.x(), actual.x());
     EXPECT_EQ(expected.y(), actual.y());
   }
   {
-    geometry_msgs::PointStamped msg;
-    msg.header.stamp = ros::Time(1234, 5678);
+    geometry_msgs::msg::PointStamped msg;
+    msg.header.stamp = rclcpp::Time(1234, 5678);
     msg.header.frame_id = "test_frame";
     msg.point.x = 1.0;
     msg.point.y = 2.0;
     msg.point.z = 3.0;
     tf2::Stamped<tf2_2d::Vector2> actual;
     tf2::fromMsg(msg, actual);
-    tf2::Stamped<tf2_2d::Vector2> expected(tf2_2d::Vector2(1.0, 2.0), ros::Time(1234, 5678), "test_frame");
+    tf2::Stamped<tf2_2d::Vector2> expected(tf2_2d::Vector2(1.0, 2.0),
+      tf2_ros::fromRclcpp(rclcpp::Time(1234, 5678)), "test_frame");
     EXPECT_EQ(expected.stamp_, actual.stamp_);
     EXPECT_EQ(expected.frame_id_, actual.frame_id_);
     EXPECT_EQ(expected.x(), actual.x());
@@ -221,9 +228,9 @@ TEST(Conversions, Rotation)
   // Test conversion to/from the Rotation type
   {
     tf2_2d::Rotation in(2.0);
-    geometry_msgs::Quaternion actual;
+    geometry_msgs::msg::Quaternion actual;
     tf2::toMsg(in, actual);
-    geometry_msgs::Quaternion expected;
+    geometry_msgs::msg::Quaternion expected;
     expected.x = 0.0;
     expected.y = 0.0;
     expected.z = 0.841470984807897;
@@ -235,8 +242,8 @@ TEST(Conversions, Rotation)
   }
   {
     tf2_2d::Rotation in(2.0);
-    geometry_msgs::Quaternion actual = tf2::toMsg(in);
-    geometry_msgs::Quaternion expected;
+    geometry_msgs::msg::Quaternion actual = tf2::toMsg(in);
+    geometry_msgs::msg::Quaternion expected;
     expected.x = 0.0;
     expected.y = 0.0;
     expected.z = 0.841470984807897;
@@ -247,7 +254,7 @@ TEST(Conversions, Rotation)
     EXPECT_NEAR(expected.w, actual.w, 1.0e-9);
   }
   {
-    geometry_msgs::Quaternion msg;
+    geometry_msgs::msg::Quaternion msg;
     msg.x = 0.0;
     msg.y = 0.0;
     msg.z = 0.841470984807897;
@@ -258,11 +265,12 @@ TEST(Conversions, Rotation)
     EXPECT_NEAR(expected.angle(), actual.angle(), 1.0e-9);
   }
   {
-    tf2::Stamped<tf2_2d::Rotation> in(tf2_2d::Rotation(2.0), ros::Time(1234, 5678), "test_frame");
-    geometry_msgs::QuaternionStamped actual;
+    tf2::Stamped<tf2_2d::Rotation> in(tf2_2d::Rotation(2.0),
+      tf2_ros::fromRclcpp(rclcpp::Time(1234, 5678)), "test_frame");
+    geometry_msgs::msg::QuaternionStamped actual;
     tf2::toMsg(in, actual);
-    geometry_msgs::QuaternionStamped expected;
-    expected.header.stamp = ros::Time(1234, 5678);
+    geometry_msgs::msg::QuaternionStamped expected;
+    expected.header.stamp = rclcpp::Time(1234, 5678);
     expected.header.frame_id = "test_frame";
     expected.quaternion.x = 0.0;
     expected.quaternion.y = 0.0;
@@ -276,10 +284,11 @@ TEST(Conversions, Rotation)
     EXPECT_NEAR(expected.quaternion.w, actual.quaternion.w, 1.0e-9);
   }
   {
-    tf2::Stamped<tf2_2d::Rotation> in(tf2_2d::Rotation(2.0), ros::Time(1234, 5678), "test_frame");
-    geometry_msgs::QuaternionStamped actual = tf2::toMsg(in);
-    geometry_msgs::QuaternionStamped expected;
-    expected.header.stamp = ros::Time(1234, 5678);
+    tf2::Stamped<tf2_2d::Rotation> in(tf2_2d::Rotation(2.0),
+      tf2_ros::fromRclcpp(rclcpp::Time(1234, 5678)), "test_frame");
+    geometry_msgs::msg::QuaternionStamped actual = tf2::toMsg(in);
+    geometry_msgs::msg::QuaternionStamped expected;
+    expected.header.stamp = rclcpp::Time(1234, 5678);
     expected.header.frame_id = "test_frame";
     expected.quaternion.x = 0.0;
     expected.quaternion.y = 0.0;
@@ -293,8 +302,8 @@ TEST(Conversions, Rotation)
     EXPECT_NEAR(expected.quaternion.w, actual.quaternion.w, 1.0e-9);
   }
   {
-    geometry_msgs::QuaternionStamped msg;
-    msg.header.stamp = ros::Time(1234, 5678);
+    geometry_msgs::msg::QuaternionStamped msg;
+    msg.header.stamp = rclcpp::Time(1234, 5678);
     msg.header.frame_id = "test_frame";
     msg.quaternion.x = 0.0;
     msg.quaternion.y = 0.0;
@@ -302,7 +311,8 @@ TEST(Conversions, Rotation)
     msg.quaternion.w = 0.540302305868140;
     tf2::Stamped<tf2_2d::Rotation> actual;
     tf2::fromMsg(msg, actual);
-    tf2::Stamped<tf2_2d::Rotation> expected(tf2_2d::Rotation(2.0), ros::Time(1234, 5678), "test_frame");
+    tf2::Stamped<tf2_2d::Rotation> expected(tf2_2d::Rotation(2.0),
+      tf2_ros::fromRclcpp(rclcpp::Time(1234, 5678)), "test_frame");
     EXPECT_EQ(expected.stamp_, actual.stamp_);
     EXPECT_EQ(expected.frame_id_, actual.frame_id_);
     EXPECT_NEAR(expected.angle(), actual.angle(), 1.0e-9);
@@ -314,9 +324,9 @@ TEST(Conversions, Transform)
   // Test conversion to/from the Transform type
   {
     tf2_2d::Transform in(1.0, 1.5, 2.0);
-    geometry_msgs::Transform actual;
+    geometry_msgs::msg::Transform actual;
     tf2::toMsg(in, actual);
-    geometry_msgs::Transform expected;
+    geometry_msgs::msg::Transform expected;
     expected.translation.x = 1.0;
     expected.translation.y = 1.5;
     expected.translation.z = 0;
@@ -334,9 +344,9 @@ TEST(Conversions, Transform)
   }
   {
     tf2_2d::Transform in(1.0, 1.5, 2.0);
-    geometry_msgs::Pose actual;
+    geometry_msgs::msg::Pose actual;
     tf2::toMsg(in, actual);
-    geometry_msgs::Pose expected;
+    geometry_msgs::msg::Pose expected;
     expected.position.x = 1.0;
     expected.position.y = 1.5;
     expected.position.z = 0;
@@ -354,9 +364,9 @@ TEST(Conversions, Transform)
   }
   {
     tf2_2d::Transform in(1.0, 1.5, 2.0);
-    geometry_msgs::Pose2D actual;
+    geometry_msgs::msg::Pose2D actual;
     tf2::toMsg(in, actual);
-    geometry_msgs::Pose2D expected;
+    geometry_msgs::msg::Pose2D expected;
     expected.x = 1.0;
     expected.y = 1.5;
     expected.theta = 2.0;
@@ -366,8 +376,8 @@ TEST(Conversions, Transform)
   }
   {
     tf2_2d::Transform in(1.0, 1.5, 2.0);
-    geometry_msgs::Transform actual = tf2::toMsg(in);
-    geometry_msgs::Transform expected;
+    geometry_msgs::msg::Transform actual = tf2::toMsg(in);
+    geometry_msgs::msg::Transform expected;
     expected.translation.x = 1.0;
     expected.translation.y = 1.5;
     expected.translation.z = 0;
@@ -384,7 +394,7 @@ TEST(Conversions, Transform)
     EXPECT_NEAR(expected.rotation.w, actual.rotation.w, 1.0e-9);
   }
   {
-    geometry_msgs::Transform msg;
+    geometry_msgs::msg::Transform msg;
     msg.translation.x = 1.0;
     msg.translation.y = 1.5;
     msg.translation.z = 0;
@@ -400,7 +410,7 @@ TEST(Conversions, Transform)
     EXPECT_NEAR(expected.angle(), actual.angle(), 1.0e-9);
   }
   {
-    geometry_msgs::Pose msg;
+    geometry_msgs::msg::Pose msg;
     msg.position.x = 1.0;
     msg.position.y = 1.5;
     msg.position.z = 0;
@@ -416,7 +426,7 @@ TEST(Conversions, Transform)
     EXPECT_NEAR(expected.angle(), actual.angle(), 1.0e-9);
   }
   {
-    geometry_msgs::Pose2D msg;
+    geometry_msgs::msg::Pose2D msg;
     msg.x = 1.0;
     msg.y = 1.5;
     msg.theta = 2.0;
@@ -428,11 +438,12 @@ TEST(Conversions, Transform)
     EXPECT_EQ(expected.angle(), actual.angle());
   }
   {
-    tf2::Stamped<tf2_2d::Transform> in(tf2_2d::Transform(1.0, 1.5, 2.0), ros::Time(1234, 5678), "test_frame");
-    geometry_msgs::TransformStamped actual;
+    tf2::Stamped<tf2_2d::Transform> in(tf2_2d::Transform(1.0, 1.5, 2.0),
+      tf2_ros::fromRclcpp(rclcpp::Time(1234, 5678)), "test_frame");
+    geometry_msgs::msg::TransformStamped actual;
     tf2::toMsg(in, actual);
-    geometry_msgs::TransformStamped expected;
-    expected.header.stamp = ros::Time(1234, 5678);
+    geometry_msgs::msg::TransformStamped expected;
+    expected.header.stamp = rclcpp::Time(1234, 5678);
     expected.header.frame_id = "test_frame";
     expected.transform.translation.x = 1.0;
     expected.transform.translation.y = 1.5;
@@ -452,11 +463,12 @@ TEST(Conversions, Transform)
     EXPECT_NEAR(expected.transform.rotation.w, actual.transform.rotation.w, 1.0e-9);
   }
   {
-    tf2::Stamped<tf2_2d::Transform> in(tf2_2d::Transform(1.0, 1.5, 2.0), ros::Time(1234, 5678), "test_frame");
-    geometry_msgs::PoseStamped actual;
+    tf2::Stamped<tf2_2d::Transform> in(tf2_2d::Transform(1.0, 1.5, 2.0),
+      tf2_ros::fromRclcpp(rclcpp::Time(1234, 5678)), "test_frame");
+    geometry_msgs::msg::PoseStamped actual;
     tf2::toMsg(in, actual);
-    geometry_msgs::PoseStamped expected;
-    expected.header.stamp = ros::Time(1234, 5678);
+    geometry_msgs::msg::PoseStamped expected;
+    expected.header.stamp = rclcpp::Time(1234, 5678);
     expected.header.frame_id = "test_frame";
     expected.pose.position.x = 1.0;
     expected.pose.position.y = 1.5;
@@ -476,10 +488,11 @@ TEST(Conversions, Transform)
     EXPECT_NEAR(expected.pose.orientation.w, actual.pose.orientation.w, 1.0e-9);
   }
   {
-    tf2::Stamped<tf2_2d::Transform> in(tf2_2d::Transform(1.0, 1.5, 2.0), ros::Time(1234, 5678), "test_frame");
-    geometry_msgs::TransformStamped actual = tf2::toMsg(in);
-    geometry_msgs::TransformStamped expected;
-    expected.header.stamp = ros::Time(1234, 5678);
+    tf2::Stamped<tf2_2d::Transform> in(tf2_2d::Transform(1.0, 1.5, 2.0),
+      tf2_ros::fromRclcpp(rclcpp::Time(1234, 5678)), "test_frame");
+    geometry_msgs::msg::TransformStamped actual = tf2::toMsg(in);
+    geometry_msgs::msg::TransformStamped expected;
+    expected.header.stamp = rclcpp::Time(1234, 5678);
     expected.header.frame_id = "test_frame";
     expected.transform.translation.x = 1.0;
     expected.transform.translation.y = 1.5;
@@ -499,8 +512,8 @@ TEST(Conversions, Transform)
     EXPECT_NEAR(expected.transform.rotation.w, actual.transform.rotation.w, 1.0e-9);
   }
   {
-    geometry_msgs::TransformStamped msg;
-    msg.header.stamp = ros::Time(1234, 5678);
+    geometry_msgs::msg::TransformStamped msg;
+    msg.header.stamp = rclcpp::Time(1234, 5678);
     msg.header.frame_id = "test_frame";
     msg.transform.translation.x = 1.0;
     msg.transform.translation.y = 1.5;
@@ -511,7 +524,8 @@ TEST(Conversions, Transform)
     msg.transform.rotation.w = 0.540302305868140;
     tf2::Stamped<tf2_2d::Transform> actual;
     tf2::fromMsg(msg, actual);
-    tf2::Stamped<tf2_2d::Transform> expected(tf2_2d::Transform(1.0, 1.5, 2.0), ros::Time(1234, 5678), "test_frame");
+    tf2::Stamped<tf2_2d::Transform> expected(tf2_2d::Transform(1.0, 1.5, 2.0),
+      tf2_ros::fromRclcpp(rclcpp::Time(1234, 5678)), "test_frame");
     EXPECT_EQ(expected.stamp_, actual.stamp_);
     EXPECT_EQ(expected.frame_id_, actual.frame_id_);
     EXPECT_NEAR(expected.x(), actual.x(), 1.0e-9);
@@ -519,8 +533,8 @@ TEST(Conversions, Transform)
     EXPECT_NEAR(expected.angle(), actual.angle(), 1.0e-9);
   }
   {
-    geometry_msgs::PoseStamped msg;
-    msg.header.stamp = ros::Time(1234, 5678);
+    geometry_msgs::msg::PoseStamped msg;
+    msg.header.stamp = rclcpp::Time(1234, 5678);
     msg.header.frame_id = "test_frame";
     msg.pose.position.x = 1.0;
     msg.pose.position.y = 1.5;
@@ -531,7 +545,8 @@ TEST(Conversions, Transform)
     msg.pose.orientation.w = 0.540302305868140;
     tf2::Stamped<tf2_2d::Transform> actual;
     tf2::fromMsg(msg, actual);
-    tf2::Stamped<tf2_2d::Transform> expected(tf2_2d::Transform(1.0, 1.5, 2.0), ros::Time(1234, 5678), "test_frame");
+    tf2::Stamped<tf2_2d::Transform> expected(tf2_2d::Transform(1.0, 1.5, 2.0),
+      tf2_ros::fromRclcpp(rclcpp::Time(1234, 5678)), "test_frame");
     EXPECT_EQ(expected.stamp_, actual.stamp_);
     EXPECT_EQ(expected.frame_id_, actual.frame_id_);
     EXPECT_NEAR(expected.x(), actual.x(), 1.0e-9);
@@ -544,15 +559,19 @@ TEST(Conversions, TransformCovariance)
 {
   {
     Eigen::Matrix3d cov_in;
+    // *INDENT-OFF*
     cov_in << 1.0, 0.2, 0.3,
               0.2, 2.0, 0.4,
               0.3, 0.4, 3.0;
+    // *INDENT-ON*
     tf2_2d::Transform trans(1.0, 1.5, 2.0);
     Eigen::Matrix3d actual = tf2::transformCovariance(cov_in, trans);
     Eigen::Matrix3d expected;
+    // *INDENT-OFF*
     expected <<  1.978182309493392,   0.247672523481242,  -0.488563021694415,
                 0.247672523481242,   1.021817690506609,   0.106330493428848,
                 -0.488563021694415,   0.106330493428848,   3.000000000000000;
+    // *INDENT-ON*
     EXPECT_NEAR(expected(0, 0), actual(0, 0), 1.0e-9);
     EXPECT_NEAR(expected(0, 1), actual(0, 1), 1.0e-9);
     EXPECT_NEAR(expected(0, 2), actual(0, 2), 1.0e-9);
@@ -564,14 +583,18 @@ TEST(Conversions, TransformCovariance)
     EXPECT_NEAR(expected(2, 2), actual(2, 2), 1.0e-9);
   }
   {
+    // *INDENT-OFF*
     std::array<double, 9> cov_in{1.0, 0.2, 0.3,  // NOLINT(whitespace/braces)
                                  0.2, 2.0, 0.4,
                                  0.3, 0.4, 3.0};  // NOLINT(whitespace/braces)
+    // *INDENT-ON*
     tf2_2d::Transform trans(1.0, 1.5, 2.0);
     std::array<double, 9> actual = tf2::transformCovariance(cov_in, trans);
+    // *INDENT-OFF*
     std::array<double, 9> expected{1.978182309493392,   0.247672523481242,  -0.488563021694415,  // NOLINT
                                    0.247672523481242,   1.021817690506609,   0.106330493428848,
                                   -0.488563021694415,   0.106330493428848,   3.000000000000000};  // NOLINT
+    // *INDENT-ON*
     EXPECT_NEAR(expected[0], actual[0], 1.0e-9);
     EXPECT_NEAR(expected[1], actual[1], 1.0e-9);
     EXPECT_NEAR(expected[2], actual[2], 1.0e-9);
@@ -583,14 +606,18 @@ TEST(Conversions, TransformCovariance)
     EXPECT_NEAR(expected[8], actual[8], 1.0e-9);
   }
   {
+    // *INDENT-OFF*
     boost::array<double, 9> cov_in{1.0, 0.2, 0.3,  // NOLINT(whitespace/braces)
                                    0.2, 2.0, 0.4,
                                    0.3, 0.4, 3.0};  // NOLINT(whitespace/braces)
+    // *INDENT-ON*
     tf2_2d::Transform trans(1.0, 1.5, 2.0);
     boost::array<double, 9> actual = tf2::transformCovariance(cov_in, trans);
+    // *INDENT-OFF*
     boost::array<double, 9> expected{1.978182309493392,   0.247672523481242,  -0.488563021694415,  // NOLINT
                                      0.247672523481242,   1.021817690506609,   0.106330493428848,
                                     -0.488563021694415,   0.106330493428848,   3.000000000000000};  // NOLINT
+    // *INDENT-ON*
     EXPECT_NEAR(expected[0], actual[0], 1.0e-9);
     EXPECT_NEAR(expected[1], actual[1], 1.0e-9);
     EXPECT_NEAR(expected[2], actual[2], 1.0e-9);
@@ -601,9 +628,4 @@ TEST(Conversions, TransformCovariance)
     EXPECT_NEAR(expected[7], actual[7], 1.0e-9);
     EXPECT_NEAR(expected[8], actual[8], 1.0e-9);
   }
-}
-int main(int argc, char **argv)
-{
-  testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
 }
