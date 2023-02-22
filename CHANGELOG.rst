@@ -17,8 +17,8 @@ Changelog for package tf2_2d
 * Tailor: Updating Jenkinsfile
 * Contributors: locus-services
 
-Forthcoming
------------
+0.8.0 (2023-02-22)
+------------------
 * 0.7.0
 * Update changelogs
 * Tailor: Updating Jenkinsfile
