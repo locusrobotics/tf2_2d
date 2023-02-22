@@ -17,6 +17,16 @@ Changelog for package tf2_2d
 * Tailor: Updating Jenkinsfile
 * Contributors: locus-services
 
+Forthcoming
+-----------
+* 0.7.0
+* Update changelogs
+* Tailor: Updating Jenkinsfile
+* Tailor: Updating Jenkinsfile
+* Tailor: Updating Jenkinsfile
+* Tailor: Updating Jenkinsfile
+* Contributors: Gary Servin, locus-services
+
 0.6.4 (2021-07-14)
 ------------------
 * Handling issue with tf2 circular dependency (`#4 <https://github.com/locusrobotics/tf2_2d/issues/4>`_)
