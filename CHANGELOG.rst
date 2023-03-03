@@ -2,6 +2,26 @@
 Changelog for package tf2_2d
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Port tf2_2d to ROS 2 (`#5 <https://github.com/locusrobotics/tf2_2d/issues/5>`_)
+  * Build sytem changes for ROS 2
+  * Code changes for ROS 2
+  * Don't need int main(); because linking to GTEST_MAIN_LIBRARIES
+  * Skip ament_cmake_copyright
+  * Move .h headers to .hpp
+  * Add .h headers with warning for backwards compatability
+  * Linter fixes: Satisfy Uncrustify
+  * Linter fixes: Satisfy cpplint
+  * Minimum CMake 3.14.4
+  * ${tf2_geometry_msgs_TARGETS} -> tf2_geometry_msgs::tf2_geometry_msgs
+  * Bump copywrite date on redirection headers
+  * Remove Scalar.h include
+* Tailor: Updating Jenkinsfile
+* Tailor: Updating Jenkinsfile
+* Tailor: Updating Jenkinsfile
+* Contributors: Shane Loretz, locus-services
+
 0.6.4 (2021-07-14)
 ------------------
 * Handling issue with tf2 circular dependency (`#4 <https://github.com/locusrobotics/tf2_2d/issues/4>`_)
