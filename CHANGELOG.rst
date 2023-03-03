@@ -2,8 +2,8 @@
 Changelog for package tf2_2d
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.1 (2023-03-03)
+------------------
 * Port tf2_2d to ROS 2 (`#5 <https://github.com/locusrobotics/tf2_2d/issues/5>`_)
   * Build sytem changes for ROS 2
   * Code changes for ROS 2
