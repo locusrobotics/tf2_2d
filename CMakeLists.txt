@@ -93,4 +93,5 @@ if(BUILD_TESTING)
   )
 endif()
 
+ament_export_dependencies(Boost)
 ament_package()
