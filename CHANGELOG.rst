@@ -2,6 +2,11 @@
 Changelog for package tf2_2d
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Tailor: Updating Jenkinsfile
+* Contributors: locus-services
+
 1.1.0 (2024-06-17)
 ------------------
 * Exporting boost dependency (#7)
