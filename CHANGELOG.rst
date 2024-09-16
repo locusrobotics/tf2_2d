@@ -42,6 +42,12 @@ Changelog for package tf2_2d
 * Tailor: Updating Jenkinsfile
 * Contributors: Gary Servin, locus-services
 
+Forthcoming
+-----------
+* Fixing issue with Eigen in Ubuntu Jammy on ARM (#8)
+  * Fixing issue with Eigen in Ubuntu Jammy on ARM
+* Contributors: Tom Moore
+
 0.11.0 (2024-06-17)
 -------------------
 
