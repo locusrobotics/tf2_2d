@@ -19,8 +19,8 @@ catkin_package(
     roscpp
     tf2
     tf2_geometry_msgs
-  DEPENDS
-    EIGEN3
+  CFG_EXTRAS
+    ${PROJECT_NAME}-extras.cmake
 )
 
 ###########
