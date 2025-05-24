@@ -35,10 +35,6 @@
 #define TF2_2D__TF2_2D_HPP_
 
 #include <Eigen/Core>
-
-#include <tf2/convert.h>
-#include <tf2/transform_datatypes.h>
-#include <tf2/utils.h>
 #include <tf2_ros/buffer_interface.h>
 
 #include <array>
@@ -56,6 +52,9 @@
 #include <geometry_msgs/msg/transform_stamped.hpp>
 #include <geometry_msgs/msg/vector3.hpp>
 #include <geometry_msgs/msg/vector3_stamped.hpp>
+#include <tf2/convert.hpp>
+#include <tf2/transform_datatypes.hpp>
+#include <tf2/utils.hpp>
 #include <tf2_2d/rotation.hpp>
 #include <tf2_2d/transform.hpp>
 #include <tf2_2d/vector2.hpp>

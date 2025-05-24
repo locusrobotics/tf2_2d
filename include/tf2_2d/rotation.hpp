@@ -34,9 +34,9 @@
 #ifndef TF2_2D__ROTATION_HPP_
 #define TF2_2D__ROTATION_HPP_
 
-#include <tf2/LinearMath/Scalar.h>
 #include <Eigen/Core>
 
+#include <tf2/LinearMath/Scalar.hpp>
 #include <tf2_2d/vector2.hpp>
 
 
