@@ -2,6 +2,14 @@
 Changelog for package tf2_2d
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Updated tf2 header extensions from .h to .hpp (`#11 <https://github.com/locusrobotics/tf2_2d/issues/11>`_)
+* Contributors: Stephen Williams, locus-services
+
+1.3.1 (2025-02-04)
+------------------
+
 1.3.0 (2025-02-04)
 ------------------
 * Tailor: Updating Jenkinsfile
