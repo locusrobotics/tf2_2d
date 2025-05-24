@@ -33,11 +33,12 @@
  */
 #include <Eigen/Core>
 #include <gtest/gtest.h>
-#include <tf2/LinearMath/Quaternion.h>
-#include <tf2/LinearMath/Transform.h>
-#include <tf2/LinearMath/Vector3.h>
 
 #include <cmath>
+
+#include <tf2/LinearMath/Quaternion.hpp>
+#include <tf2/LinearMath/Transform.hpp>
+#include <tf2/LinearMath/Vector3.hpp>
 #include <tf2_2d/rotation.hpp>
 #include <tf2_2d/transform.hpp>
 #include <tf2_2d/vector2.hpp>

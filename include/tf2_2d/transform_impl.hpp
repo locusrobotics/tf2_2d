@@ -36,9 +36,9 @@
 
 #include <Eigen/Core>
 
-#include <tf2/LinearMath/MinMax.h>
-#include <tf2/LinearMath/Transform.h>
-#include <tf2/utils.h>
+#include <tf2/LinearMath/MinMax.hpp>
+#include <tf2/LinearMath/Transform.hpp>
+#include <tf2/utils.hpp>
 #include <tf2_2d/rotation.hpp>
 #include <tf2_2d/vector2.hpp>
 

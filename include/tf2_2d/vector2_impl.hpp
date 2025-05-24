@@ -36,7 +36,7 @@
 
 #include <Eigen/Core>
 
-#include <tf2/LinearMath/MinMax.h>
+#include <tf2/LinearMath/MinMax.hpp>
 
 
 namespace tf2_2d
