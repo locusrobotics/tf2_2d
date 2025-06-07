@@ -42,6 +42,18 @@ Changelog for package tf2_2d
 * Tailor: Updating Jenkinsfile
 * Contributors: Gary Servin, locus-services
 
+Forthcoming
+-----------
+* Tailor: Updating Jenkinsfile
+* Tailor: Updating Jenkinsfile
+* Tailor: Updating Jenkinsfile
+* Tailor: Updating Jenkinsfile
+* Tailor: Updating Jenkinsfile
+* Fix dependency
+* Make find_package(Eigen more complicated (#10)
+  Co-authored-by: Stephen Williams <swilliams@locusrobotics.com>
+* Contributors: Gary Servin, locus-services
+
 0.13.0 (2025-02-04)
 -------------------
 * Tailor: Updating Jenkinsfile
