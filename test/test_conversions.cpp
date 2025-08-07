@@ -33,7 +33,7 @@
  */
 #include <Eigen/Core>
 #include <gtest/gtest.h>
-#include <tf2_ros/buffer_interface.h>
+#include <tf2_ros/buffer_interface.hpp>
 
 #include <boost/array.hpp>
 #include <geometry_msgs/msg/quaternion.hpp>

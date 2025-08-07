@@ -35,7 +35,7 @@
 #define TF2_2D__TF2_2D_HPP_
 
 #include <Eigen/Core>
-#include <tf2_ros/buffer_interface.h>
+#include <tf2_ros/buffer_interface.hpp>
 
 #include <array>
 #include <cmath>
