@@ -43,7 +43,6 @@
 #include <geometry_msgs/msg/point_stamped.hpp>
 #include <geometry_msgs/msg/pose.hpp>
 #include <geometry_msgs/msg/pose_stamped.hpp>
-#include <geometry_msgs/msg/pose2_d.hpp>
 #include <geometry_msgs/msg/transform.hpp>
 #include <geometry_msgs/msg/transform_stamped.hpp>
 #include <geometry_msgs/msg/vector3.hpp>
@@ -364,18 +363,6 @@ TEST(Conversions, Transform)
   }
   {
     tf2_2d::Transform in(1.0, 1.5, 2.0);
-    geometry_msgs::msg::Pose2D actual;
-    tf2::toMsg(in, actual);
-    geometry_msgs::msg::Pose2D expected;
-    expected.x = 1.0;
-    expected.y = 1.5;
-    expected.theta = 2.0;
-    EXPECT_NEAR(expected.x, actual.x, 1.0e-9);
-    EXPECT_NEAR(expected.y, actual.y, 1.0e-9);
-    EXPECT_NEAR(expected.theta, actual.theta, 1.0e-9);
-  }
-  {
-    tf2_2d::Transform in(1.0, 1.5, 2.0);
     geometry_msgs::msg::Transform actual = tf2::toMsg(in);
     geometry_msgs::msg::Transform expected;
     expected.translation.x = 1.0;
@@ -424,18 +411,6 @@ TEST(Conversions, Transform)
     EXPECT_NEAR(expected.x(), actual.x(), 1.0e-9);
     EXPECT_NEAR(expected.y(), actual.y(), 1.0e-9);
     EXPECT_NEAR(expected.angle(), actual.angle(), 1.0e-9);
-  }
-  {
-    geometry_msgs::msg::Pose2D msg;
-    msg.x = 1.0;
-    msg.y = 1.5;
-    msg.theta = 2.0;
-    tf2_2d::Transform actual;
-    tf2::fromMsg(msg, actual);
-    tf2_2d::Transform expected(1.0, 1.5, 2.0);
-    EXPECT_EQ(expected.x(), actual.x());
-    EXPECT_EQ(expected.y(), actual.y());
-    EXPECT_EQ(expected.angle(), actual.angle());
   }
   {
     tf2::Stamped<tf2_2d::Transform> in(tf2_2d::Transform(1.0, 1.5, 2.0),

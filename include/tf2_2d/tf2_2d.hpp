@@ -47,7 +47,6 @@
 #include <geometry_msgs/msg/point_stamped.hpp>
 #include <geometry_msgs/msg/pose.hpp>
 #include <geometry_msgs/msg/pose_stamped.hpp>
-#include <geometry_msgs/msg/pose2_d.hpp>
 #include <geometry_msgs/msg/transform.hpp>
 #include <geometry_msgs/msg/transform_stamped.hpp>
 #include <geometry_msgs/msg/vector3.hpp>
@@ -215,13 +214,6 @@ inline void toMsg(const tf2_2d::Transform & in, geometry_msgs::msg::Pose & msg)
   toMsg(in.rotation(), msg.orientation);
 }
 
-inline void toMsg(const tf2_2d::Transform & in, geometry_msgs::msg::Pose2D & msg)
-{
-  msg.x = in.x();
-  msg.y = in.y();
-  msg.theta = in.theta();
-}
-
 inline geometry_msgs::msg::Transform toMsg(const tf2_2d::Transform & in)
 {
   geometry_msgs::msg::Transform msg;
@@ -247,13 +239,6 @@ inline void fromMsg(const geometry_msgs::msg::Pose & msg, tf2_2d::Transform & ou
   tf2_2d::Vector2 translation;
   fromMsg(msg.position, translation);
   out.setTranslation(translation);
-}
-
-inline void fromMsg(const geometry_msgs::msg::Pose2D & msg, tf2_2d::Transform & out)
-{
-  out.setAngle(msg.theta);
-  out.setX(msg.x);
-  out.setY(msg.y);
 }
 
 inline void toMsg(
