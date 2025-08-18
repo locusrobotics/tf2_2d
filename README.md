@@ -7,8 +7,8 @@ does limit its use to a single output type, so I've had to make a guess as to th
 
 For example:
 ```
-#include <tf2_2d/tf2_2d.h>     // This header includes the tf2 conversion functions
-#include <tf2_2d/transform.h>  // Then include what you use
+#include <tf2_2d/tf2_2d.hpp>     // This header includes the tf2 conversion functions
+#include <tf2_2d/transform.hpp>  // Then include what you use
 
 // Convert a tf2_2d object into a 3D message
 auto transform_2d = tf2_2d::Transform(1.0, 1.5, 2.0);

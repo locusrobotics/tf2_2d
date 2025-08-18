@@ -33,7 +33,6 @@
  */
 #include <Eigen/Core>
 #include <gtest/gtest.h>
-#include <tf2_ros/buffer_interface.h>
 
 #include <boost/array.hpp>
 #include <geometry_msgs/msg/quaternion.hpp>
@@ -54,6 +53,7 @@
 #include <tf2_2d/tf2_2d.hpp>
 #include <tf2_2d/transform.hpp>
 #include <tf2_2d/vector2.hpp>
+#include <tf2_ros/buffer_interface.hpp>
 
 
 TEST(Conversions, Vector2)

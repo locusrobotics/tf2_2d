@@ -35,7 +35,6 @@
 #define TF2_2D__TF2_2D_HPP_
 
 #include <Eigen/Core>
-#include <tf2_ros/buffer_interface.h>
 
 #include <array>
 #include <cmath>
@@ -59,6 +58,7 @@
 #include <tf2_2d/transform.hpp>
 #include <tf2_2d/vector2.hpp>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
+#include <tf2_ros/buffer_interface.hpp>
 
 #include <boost/array.hpp>
 
