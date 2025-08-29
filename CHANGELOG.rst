@@ -2,6 +2,15 @@
 Changelog for package tf2_2d
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Update header files (`#12 <https://github.com/locusrobotics/tf2_2d/issues/12>`_)
+  * Update header files
+  * Fix header order
+  ---------
+  Co-authored-by: Stephen Williams <swilliams@locusrobotics.com>
+* Contributors: Gary Servin
+
 1.4.0 (2025-07-28)
 ------------------
 * Updated tf2 header extensions from .h to .hpp (`#11 <https://github.com/locusrobotics/tf2_2d/issues/11>`_)
