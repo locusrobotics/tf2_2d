@@ -2,8 +2,8 @@
 Changelog for package tf2_2d
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.4.1 (2025-08-29)
+------------------
 * Update header files (`#12 <https://github.com/locusrobotics/tf2_2d/issues/12>`_)
   * Update header files
   * Fix header order
