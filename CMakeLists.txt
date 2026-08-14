@@ -2,7 +2,8 @@ cmake_minimum_required(VERSION 3.14.4)
 project(tf2_2d)
 
 find_package(ament_cmake REQUIRED)
-find_package(Boost REQUIRED)
+# Config mode avoids CMake's removed FindBoost module (policy CMP0167).
+find_package(Boost CONFIG REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(tf2 REQUIRED)
