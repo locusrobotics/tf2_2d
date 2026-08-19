@@ -2,8 +2,8 @@
 Changelog for package tf2_2d
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.6.2 (2026-08-19)
+------------------
 * Fix Cmake warnings related to Boost cmake files (`#13 <https://github.com/locusrobotics/tf2_2d/issues/13>`_)
 * Contributors: Stephen Williams
 
